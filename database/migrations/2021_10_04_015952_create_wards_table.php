@@ -19,8 +19,10 @@ class CreateWardsTable extends Migration
             /*required columns*/
             $table->string('name', 45);
             $table->string('location', 45);
-            $table->string('description');
             $table->boolean('state')->default(true);
+
+            /*nullable columns*/
+            $table->string('description')->nullable();
 
             /*special columns*/
             $table->timestamps();

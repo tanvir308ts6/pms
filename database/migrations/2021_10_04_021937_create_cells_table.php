@@ -20,9 +20,11 @@ class CreateCellsTable extends Migration
             $table->string('name',45);
             $table->string('code');
             $table->enum('type', ['low', 'medium', 'high']);
-            $table->string('description');
             $table->unsignedBigInteger('capacity');
             $table->boolean('state')->default(true);
+
+            /*nullable columns*/
+            $table->string('description');
 
             /*special columns*/
             $table->timestamps();
