@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +35,6 @@ class UserFactory extends Factory
             'birthdate' => $this->faker->dateTimeBetween('-50 years', 'now'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
-            'role_id' => Role::all()->random()->id,
         ];
     }
 

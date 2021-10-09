@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Report;
+use App\Models\Jail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ReportFactory extends Factory
+class JailFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Report::class;
+    protected $model = Jail::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,10 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
+            'name' => $this->faker->streetName,
+            'code' => $this->faker->iban(),
+            'type' => $this->faker->randomElement(['low', 'medium', 'high']),
+            'capacity' => $this->faker->numberBetween($min = 4, $max = 8),
             'description' => $this->faker->text(255),
         ];
     }
