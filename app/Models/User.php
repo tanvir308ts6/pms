@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,9 +22,15 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
+        'first_name',
+        'last_name',
+        'username',
+        'personal_phone',
+        'home_phone',
+        'address',
         'password',
+        'email',
+        'birthdate',
     ];
 
     /**
@@ -49,7 +56,7 @@ class User extends Authenticatable
      * Relationships
      *
      */
-    /*A user can have only one role*/
+    /*A user can only have one role*/
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
@@ -66,5 +73,11 @@ class User extends Authenticatable
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
+    }
+
+    /*A user can only have one image*/
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

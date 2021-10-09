@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             WardSeeder::class,
             ReportSeeder::class,
             JailSeeder::class,
+            ImageSeeder::class,
         ]);
     }
 }
