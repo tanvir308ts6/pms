@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Report extends Model
+class Jail extends Model
 {
     use HasFactory;
 
@@ -15,16 +15,16 @@ class Report extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['name', 'code', 'type', 'capacity', 'description'];
 
 
     /**
      * Relationships
      *
      */
-    /*A report belongs to one user*/
-    public function user(): BelongsTo
+    /*A jail can only have one assigned ward*/
+    public function ward(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Ward::class);
     }
 }

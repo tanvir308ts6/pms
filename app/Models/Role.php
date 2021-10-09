@@ -21,7 +21,8 @@ class Role extends Model
     /**
      * Relationships
      *
-    */
+     */
+    /*A role can be assigned to one or more users   */
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

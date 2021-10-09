@@ -49,17 +49,20 @@ class User extends Authenticatable
      * Relationships
      *
      */
+    /*A user can have only one role*/
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
+    /*A user (guard) can be assigned to one or more wards*/
     public function wards(): BelongsToMany
     {
         return $this->belongsToMany(Ward::class)
-            ->withPivotValue();
+            ->withTimestamps();
     }
 
+    /*A user (guard) can have one or more reports*/
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
