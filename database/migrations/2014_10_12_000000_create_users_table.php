@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
 
             /*required columns*/
-            $table->string('name',50);
+            $table->string('name', 50);
             $table->string('lastname', 50);
             $table->string('username', 50);
             $table->string('personal_phone', 10);

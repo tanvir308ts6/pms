@@ -14,6 +14,7 @@ class AddUserIdColumnToReportsTable extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
+            /*user id foreign key*/
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')

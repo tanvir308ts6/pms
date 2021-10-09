@@ -14,9 +14,7 @@ class AddForeignKeysToUserWardTable extends Migration
     public function up()
     {
         Schema::table('user_ward', function (Blueprint $table) {
-            /**
-             * User id and ward id foreign keys
-             */
+            /*user id and ward id foreign key*/
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
