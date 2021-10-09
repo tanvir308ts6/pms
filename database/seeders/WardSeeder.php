@@ -15,12 +15,14 @@ class WardSeeder extends Seeder
      */
     public function run()
     {
-        // Ward assignment
+        /*wards are created*/
+        $wards = Ward::factory()->count(20)->create();
+
+        /*guards are assigned to wards*/
         $guard_role = Role::where('name', 'guard')->first();
         $guards = $guard_role->users;
-        $wards = Ward::factory()->count(25)->create();
-        $wards->each(function ($ward)use($guards){
-            $ward->users()->attach($guards->random()->id);
+        $wards->each(function ($ward) use ($guards) {
+            $ward->users()->attach($guards->shift());
         });
     }
 }

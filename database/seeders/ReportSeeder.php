@@ -15,8 +15,11 @@ class ReportSeeder extends Seeder
      */
     public function run()
     {
-        Report::factory()
-            ->count(25)
-            ->create();
+        /*reports are created for each guard*/
+        $role = Role::where('name', 'guard')->first();
+        $guards = $role->users;
+        $guards->each(function ($guard) {
+            Report::factory()->for($guard)->create();
+        });
     }
 }
