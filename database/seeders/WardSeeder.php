@@ -18,7 +18,7 @@ class WardSeeder extends Seeder
         /*wards are created*/
         $wards = Ward::factory()->count(20)->create();
 
-        /*guards are assigned to wards*/
+        /*guards are assigned to ward*/
         $guard_role = Role::where('name', 'guard')->first();
         $guards = $guard_role->users;
         $wards->each(function ($ward) use ($guards) {

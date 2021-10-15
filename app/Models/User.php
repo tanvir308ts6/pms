@@ -80,4 +80,11 @@ class User extends Authenticatable
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    /*A user can only have one assigned jail*/
+    public function jails(): BelongsToMany
+    {
+        return $this->belongsToMany(Jail::class)
+            ->withTimestamps();
+    }
 }
