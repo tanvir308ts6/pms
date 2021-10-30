@@ -10,10 +10,6 @@
     reversColumns=0
 >
 
-    <!--Side Info-->
-    <x-slot name="sideTitle">{{__("Prison System")}}</x-slot>
-    <x-slot name="sideDescription">{{__("Web system for the management of a penitentiary center.")}}</x-slot>
-
     <!--Login Info-->
     <x-slot name="formTitle">{{__("Welcome Back")}}</x-slot>
     <x-slot name="formDescription">{{__("Please sign in to your account")}}</x-slot>

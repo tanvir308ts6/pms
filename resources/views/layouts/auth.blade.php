@@ -33,11 +33,11 @@
             </a>
             <!--Side Title-->
             <h2 class="text-3xl font-extrabold">
-                {{$sideTitle}}
+                {{$sideTitle ?? __("Prison System")}}
             </h2>
             <!--Side Description-->
             <p class="text-base">
-                {{$sideDescription}}
+                {{$sideDescription ?? __("Web system for the management of a penitentiary center.")}}
             </p>
         </div>
     </div>
