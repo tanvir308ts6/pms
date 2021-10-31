@@ -1,7 +1,7 @@
 @php
     /*Colors for this view*/
     $primary = "purple";
-    $secondary = "pink";
+    $secondary = "yellow";
 @endphp
 
 <x-auth-layout

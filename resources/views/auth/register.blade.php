@@ -1,7 +1,7 @@
 @php
     /*Colors for this view*/
     $primary = "green";
-    $secondary = "pink";
+    $secondary = "indigo";
 @endphp
 
 <x-auth-layout
@@ -12,7 +12,7 @@
 
     <!--Login Info-->
     <x-slot name="formTitle">{{__("Create Account")}}</x-slot>
-    <x-slot name="formDescription">{{__("Now you can change your password, make sure it is secure.")}}</x-slot>
+    <x-slot name="formDescription">{{__("Great, now you can be part of us, just sign up.")}}</x-slot>
 
     <!--Reset Password  Form-->
     <x-slot name="authForm">

@@ -1,7 +1,7 @@
 @php
     /*Colors for this view*/
-    $primary = "blue";
-    $secondary = "pink";
+    $primary = "green";
+    $secondary = "gray";
 @endphp
 
 <x-auth-layout
@@ -32,8 +32,8 @@
                 @csrf
                 <div class="flex justify-center">
                     <x-button class="w-full"
-                              :primary-color="$secondary"
-                              :secondary-color="$primary">
+                              primary-color="red"
+                              secondary-color="pink">
                         {{ __('Log out') }}
                     </x-button>
                 </div>
