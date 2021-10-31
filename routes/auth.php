@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -60,14 +59,3 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['auth', 'signed', 'throttle:6,1'])
     ->name('verification.verify');
-
-
-//
-//Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-//                ->middleware('auth')
-//                ->name('password.confirm');
-//
-//Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
-//                ->middleware('auth');
-
-
