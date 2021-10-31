@@ -59,6 +59,8 @@ class RegisteredUserController extends Controller
         $guard_role = Role::where('name', 'guard')->first();
         $guard_role->users()->save($user);
 
+        event(new Registered($user));
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
