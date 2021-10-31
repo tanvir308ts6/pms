@@ -19,32 +19,34 @@
 <body class="font-sans antialiased">
 
 
-<div class="min-h-screen grid grid-cols-none md:grid-cols-5 gap-1">
+<!--<div class="min-h-screen grid grid-cols-none md:grid-cols-5 gap-1">-->
+<div class="relative">
 
     <!--Side-->
-    <div
-        class="hidden md:flex md:col-span-2 justify-center items-center
-        bg-gradient-to-r from-{{$primaryColor}}-500 to-{{$secondaryColor}}-500
-        {{ $reversColumns ? "order-2": "order-1"}}">
+    <div class="md:fixed md:w-2/5  {{ $reversColumns ? "right-0": "left-0"}}">
+        <div
+            class="hidden md:flex justify-center items-center  min-h-screen
+             bg-gradient-to-r from-{{$primaryColor}}-500 to-{{$secondaryColor}}-500">
 
-        <div class="text-center text-white space-y-3 p-8">
-            <a href="{{ route('home') }}" class="inline-flex">
-                <x-icons.shield class="w-28 h-28 mx-auto"/>
-            </a>
-            <!--Side Title-->
-            <h2 class="text-3xl font-extrabold">
-                {{$sideTitle ?? __("Prison System")}}
-            </h2>
-            <!--Side Description-->
-            <p class="text-base">
-                {{$sideDescription ?? __("Web system for the management of a penitentiary center.")}}
-            </p>
+            <div class="text-center text-white space-y-3 p-8">
+                <a href="{{ route('home') }}" class="inline-flex">
+                    <x-icons.shield class="w-28 h-28 mx-auto"/>
+                </a>
+                <!--Side Title-->
+                <h2 class="text-3xl font-extrabold">
+                    {{$sideTitle ?? __("Prison System")}}
+                </h2>
+                <!--Side Description-->
+                <p class="text-base">
+                    {{$sideDescription ?? __("Web system for the management of a penitentiary center.")}}
+                </p>
+            </div>
         </div>
     </div>
 
     <!-- Auth Form -->
-    <div class="md:col-span-3 flex items-center justify-center
-         {{ $reversColumns ? "order-1": "order-2"}}">
+    <div class="absolute flex w-full md:w-3/5 min-h-screen items-center justify-center py-16
+         {{ $reversColumns ? "left-0": "right-0"}}">
 
         <main class="max-w-md w-full h-auto px-4">
             <div class="text-center space-y-2">
@@ -63,10 +65,10 @@
                 </p>
 
                 <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+                <x-auth-session-status class="mb-4" :status="session('status')"/>
 
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
             </div>
             <div class="mt-6">
                 {{$authForm}}
