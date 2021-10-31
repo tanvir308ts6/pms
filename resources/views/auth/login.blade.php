@@ -17,8 +17,8 @@
     <!--Login  Form-->
     <x-slot name="authForm">
         <form method="POST" action="{{ route('login') }}" class="space-y-6">
-        @csrf
-        <!--Username or email-->
+            @csrf
+            <!--Username or email-->
             <div>
                 <x-label for="login_field"
                          :value="__('Username or email address')"/>

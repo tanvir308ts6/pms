@@ -17,13 +17,13 @@
     <!--Forgot Password  Form-->
     <x-slot name="authForm">
         <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
-        @csrf
-        <!--Email-->
+            @csrf
+            <!--Email-->
             <div>
                 <x-label for="email"
                          :value="__('Email address')"/>
 
-                <x-input id="login_field"
+                <x-input id="email"
                          class="block mt-2 w-full"
                          :focus-color="$primary"
                          type="email"
@@ -40,6 +40,17 @@
                           :secondary-color="$secondary">
                     {{ __('Request link') }}
                 </x-button>
+            </div>
+
+            <div class="mt-4 flex flex-col items-center justify-center text-md text-gray-500">
+                <!--Sign In-->
+                <span>{{"Already have an account?"}}</span>
+                <x-link href="{{route('login')}}"
+                        class="text-base font-semibold"
+                        :color="$primary"
+                        :hover="$secondary">
+                    {{ __('Sign in') }}
+                </x-link>
             </div>
         </form>
     </x-slot>

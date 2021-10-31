@@ -38,6 +38,9 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
     ->middleware('guest')
     ->name('password.reset');
 
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+                ->middleware('guest')
+                ->name('password.update');
 
 //Route::get('/register', [RegisteredUserController::class, 'create'])
 //                ->middleware('guest')
@@ -46,9 +49,6 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
 //Route::post('/register', [RegisteredUserController::class, 'store'])
 //                ->middleware('guest');
 ///
-//Route::post('/reset-password', [NewPasswordController::class, 'store'])
-//                ->middleware('guest')
-//                ->name('password.update');
 //
 //Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
 //                ->middleware('auth')
