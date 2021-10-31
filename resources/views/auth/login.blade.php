@@ -78,7 +78,7 @@
                 <!--Sign Up-->
                 @if (Route::has('register'))
                     <span>{{"Don't have an account?"}}</span>
-                    <x-link href="#"
+                    <x-link href="{{ route('register') }}"
                             class="text-base font-semibold"
                             :color="$primary"
                             :hover="$secondary">

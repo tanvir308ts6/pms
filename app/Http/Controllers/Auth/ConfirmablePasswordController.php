@@ -19,7 +19,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-        return view('bleeze-auth.confirm-password');
+        return view('breeze-auth.confirm-password');
     }
 
     /**
@@ -36,11 +36,11 @@ class ConfirmablePasswordController extends Controller
             'password' => $request->password,
         ])) {
             throw ValidationException::withMessages([
-                'password' => __('bleeze-auth.password'),
+                'password' => __('auth.password'),
             ]);
         }
 
-        $request->session()->put('bleeze-auth.password_confirmed_at', time());
+        $request->session()->put('auth.password_confirmed_at', time());
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
