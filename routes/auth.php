@@ -41,12 +41,12 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.update');
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
+/*Route::get('/register', [RegisteredUserController::class, 'create'])
     ->middleware('guest')
     ->name('register');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
+    ->middleware('guest');*/
 
 Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
     ->middleware('auth')
