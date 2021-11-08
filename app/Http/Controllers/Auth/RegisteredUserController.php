@@ -58,6 +58,10 @@ class RegisteredUserController extends Controller
 
         $guard_role = Role::where('name', 'guard')->first();
         $guard_role->users()->save($user);
+        $user->image()->create([
+            'path' => "https://ui-avatars.com/api/?name=$user->first_name+$user->last_name&size=128"
+        ]);
+
 
         event(new Registered($user));
 

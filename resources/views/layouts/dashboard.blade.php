@@ -12,7 +12,7 @@
 
                 <div class="flex items-center justify-center h-14 space-x-2 mx-5 border-b-2">
                     <x-icons.shield class="w-8 h-8 text-gray-500" />
-                    <span class="text-gray-800 dark:text-white text-2xl font-semibold">Dashboard</span>
+                    <span class="text-gray-800 dark:text-white text-2xl font-semibold">{{ Auth::user()->role->name }}</span>
                 </div>
 
                 <!--Sidebar options-->
@@ -61,9 +61,9 @@
                         <!--User options-->
                         <x-dropdown-navbar>
                             <x-slot name="title">
-                                <span class="text-current text-sm hidden sm:block">Jones Ferdinand</span>
+                                <span class="text-current text-sm hidden sm:block">{{ Auth::user()->getFullName() }}</span>
                                 <x-user-avatar
-                                    src='https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80' />
+                                    src="{{ Auth::user()->image->path }}" />
                             </x-slot>
                             <x-slot name="options">
                                 <x-dropdown-navbar-link>{{ __('Profile') }}</x-dropdown-navbar-link>

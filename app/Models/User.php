@@ -53,6 +53,14 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Methods
+     */
+    public function getFullName(): string
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    /**
      * Relationships
      *
      */
