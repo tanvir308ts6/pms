@@ -17,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.home');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.home');
+    })->name('dashboard');
 
-require __DIR__.'/auth.php';
+    Route::get('/profile', function () {
+        return view('profile.show');
+    })->name('profile');
+});
+
+require __DIR__ . '/auth.php';

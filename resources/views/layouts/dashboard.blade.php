@@ -12,7 +12,8 @@
 
                 <div class="flex items-center justify-center h-14 space-x-2 mx-5 border-b-2">
                     <x-icons.shield class="w-8 h-8 text-gray-500" />
-                    <span class="text-gray-800 dark:text-white text-2xl font-semibold">{{ Auth::user()->role->name }}</span>
+                    <span
+                        class="text-gray-800 dark:text-white text-2xl font-semibold">{{ Auth::user()->role->name }}</span>
                 </div>
 
                 <!--Sidebar options-->
@@ -42,7 +43,7 @@
             </div>
 
             <!--Main view-->
-            <div class="flex-1 flex flex-col overflow-hidden">
+            <div class="flex-1 flex flex-col">
                 <!--Navbar-->
                 <header class="flex justify-between lg:justify-end items-center bg-white h-14 shadow-md px-5 z-0">
                     <div class="flex items-center lg:hidden">
@@ -61,12 +62,13 @@
                         <!--User options-->
                         <x-dropdown-navbar>
                             <x-slot name="title">
-                                <span class="text-current text-sm hidden sm:block">{{ Auth::user()->getFullName() }}</span>
-                                <x-user-avatar
-                                    src="{{ Auth::user()->image->path }}" />
+                                <span
+                                    class="text-current text-sm hidden sm:block">{{ Auth::user()->getFullName() }}</span>
+                                <x-user-avatar src="{{ Auth::user()->image->path }}" />
                             </x-slot>
                             <x-slot name="options">
-                                <x-dropdown-navbar-link>{{ __('Profile') }}</x-dropdown-navbar-link>
+                                <x-dropdown-navbar-link :href="route('profile')">{{ __('Profile') }}
+                                </x-dropdown-navbar-link>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-navbar-link :href="route('logout')"
@@ -80,14 +82,11 @@
                 </header>
 
                 <!--Content-->
-                <main class="flex-1 overflow-x-hidden overflow-y-auto">
+                <main class="overflow-x-hidden overflow-y-auto">
 
                     <!-- Page Content -->
-                    <div class="container mx-auto px-6 py-8">
-                        <div
-                            class="grid place-items-center h-96 text-gray-500 dark:text-gray-300 text-xl bg-white rounded-lg shadow-md">
-                            {{ $slot }}
-                        </div>
+                    <div class="px-6 py-8">
+                        {{ $slot }}
                     </div>
                 </main>
             </div>
