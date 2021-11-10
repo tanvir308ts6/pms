@@ -1,4 +1,4 @@
-<x-form-section>
+<x-form-section method="POST" :action="route('profile.update')">
     <x-slot name="title">{{ _("Profile") }}</x-slot>
     <x-slot name="description">{{ _("Update your account's profile information") }}</x-slot>
 
@@ -17,14 +17,16 @@
                      placeholder="Enter your first name"
                      required
                      autofocus/>
+
+            <x-input-error for="first_name" class="mt-2"/>
         </div>
     </x-slot>
 
     <x-slot name="actions">
         <x-button class="min-w-max"
-                      :primary-color="$primary"
-                      :secondary-color="$secondary">
-                {{ __('Update') }}
-            </x-button>
+                  :primary-color="$primary"
+                  :secondary-color="$secondary">
+            {{ __('Update') }}
+        </x-button>
     </x-slot>
 </x-form-section>
