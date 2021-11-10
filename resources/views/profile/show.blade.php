@@ -1,7 +1,7 @@
 @php
-/*Colors for this view*/
-    $primary = 'yellow';
-    $secondary = 'pink';
+    /*Colors for this view*/
+    $primary = 'indigo';
+    $secondary = 'green';
 @endphp
 
 <x-dashboard-layout>

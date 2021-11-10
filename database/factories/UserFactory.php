@@ -21,18 +21,18 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'username' => $this->faker->name(),
+            'username' => $this->faker->word,
             'personal_phone' => '09' . $this->faker->randomNumber(8),
             'home_phone' => '02' . $this->faker->randomNumber(7),
             'address' => $this->faker->streetAddress,
             'password' => Hash::make('secret'),
             'email' => $this->faker->unique()->safeEmail(),
-            'birthdate' => $this->faker->dateTimeBetween('-50 years', 'now'),
+            'birthdate' => $this->faker->dateTimeBetween('-70 years', '-18 years'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
@@ -43,7 +43,7 @@ class UserFactory extends Factory
      *
      * @return Factory
      */
-    public function unverified()
+    public function unverified(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
