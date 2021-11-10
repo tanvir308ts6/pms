@@ -1,4 +1,8 @@
 <x-form-section method="POST" :action="route('profile.update')">
+    <x-slot name="formMethodSpoofing">
+        @method('PUT')
+        @csrf
+    </x-slot>
     <x-slot name="title">{{ _("Profile") }}</x-slot>
     <x-slot name="description">{{ _("Update your account's profile information") }}</x-slot>
 
