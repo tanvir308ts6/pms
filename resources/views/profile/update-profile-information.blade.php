@@ -3,8 +3,8 @@
         @method('PUT')
         @csrf
     </x-slot>
-    <x-slot name="title">{{ _("Profile") }}</x-slot>
-    <x-slot name="description">{{ _("Update your account's profile information") }}</x-slot>
+    <x-slot name="title">{{ __("Profile") }}</x-slot>
+    <x-slot name="description">{{ __("Update your account's profile information.") }}</x-slot>
 
     <x-slot name="form">
         <!--First name-->

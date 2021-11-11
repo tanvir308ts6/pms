@@ -43,9 +43,9 @@
             </div>
 
             <!--Main view-->
-            <div class="flex-1 flex flex-col">
+            <div class="flex flex-col">
                 <!--Navbar-->
-                <header class="flex justify-between lg:justify-end items-center bg-white h-14 shadow-md px-5 z-0">
+                <header class="flex flex-shrink-0 h-14  justify-between lg:justify-end items-center bg-white shadow-md px-5 z-0">
                     <div class="flex items-center lg:hidden">
                         <!--Menu option-->
                         <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none">
