@@ -1,5 +1,5 @@
 <x-app-layout>
-    <!-- component -->
+
     <div x-data="{ sidebarOpen: false }">
         <div class="flex h-screen bg-gray-100">
             <!--It is a background that is activated when the screen size is 768px and the sidebar is displayed-->
@@ -8,89 +8,108 @@
 
             <!--Sidebar-->
             <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
-                 class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform border  border-l shadow-sm bg-white overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
+                 class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform border border-l shadow-sm
+                        bg-white overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
 
-                <div class="flex items-center justify-center h-14 space-x-2 mx-5 border-b-2">
-                    <x-icons.shield class="w-8 h-8 text-gray-500"/>
-                    <span
-                        class="text-gray-800 dark:text-white text-2xl font-semibold">{{ Auth::user()->role->name }}</span>
+                <!--User role-->
+                <div class="flex items-center justify-center h-auto space-x-2 mx-5 border-b-2 flex-wrap">
+                    <x-icons.shield class="w-8 max-h-full h-14 text-gray-500"/>
+                    <span class="text-gray-800 text-2xl font-bold uppercase tracking-wide text-center">
+                        {{ Auth::user()->role->name }}
+                    </span>
                 </div>
 
                 <!--Sidebar options-->
                 <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
-                    <x-dropdown-sidebar title="Hello world">
-                        <x-slot name="icon">
-                            <x-icons.home/>
+                    <x-dropdown.simple.option class="w-full">
+                        <x-slot name="header">
+                            <x-icons.director/>
+                            <span>{{__("Director")}}</span>
                         </x-slot>
                         <x-slot name="options">
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
+                            <x-dropdown.simple.link>{{ __('List directors') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link>{{ __('Create a new director') }}</x-dropdown.simple.link>
                         </x-slot>
-                    </x-dropdown-sidebar>
+                    </x-dropdown.simple.option>
 
-                    <x-dropdown-sidebar title="Hello world">
-                        <x-slot name="icon">
-                            <x-icons.home/>
+                    <x-dropdown.simple.option class="w-full">
+                        <x-slot name="header">
+                            <x-icons.guard/>
+                            <span>{{__("Guards")}}</span>
                         </x-slot>
                         <x-slot name="options">
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
-                            <x-dropdown-sidebar-link :href="route('home')">{{ __('Home') }}</x-dropdown-sidebar-link>
+                            <x-dropdown.simple.link>{{ __('List guards') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link>{{ __('Create a new guard') }}</x-dropdown.simple.link>
                         </x-slot>
-                    </x-dropdown-sidebar>
+                    </x-dropdown.simple.option>
+
+                    <x-dropdown.simple.option title="Hello world" class="w-full">
+                        <x-slot name="header">
+                            <x-icons.prisoner/>
+                            <span>{{__("Prisoners")}}</span>
+                        </x-slot>
+                        <x-slot name="options">
+                            <x-dropdown.simple.link>{{ __('List prisoner') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link>{{ __('Create a new prisoner') }}</x-dropdown.simple.link>
+                        </x-slot>
+                    </x-dropdown.simple.option>
                 </nav>
             </div>
 
             <!--Main view-->
-            <div class="flex flex-col">
+            <div class="flex-1 flex flex-col">
                 <!--Navbar-->
-                <header class="flex flex-shrink-0 h-14  justify-between lg:justify-end items-center bg-white shadow-md px-5 z-0">
-                    <div class="flex items-center lg:hidden">
-                        <!--Menu option-->
-                        <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none">
-                            <x-icons.menu class="w-7 h-7"/>
-                        </button>
-                    </div>
+                <header class="flex flex-shrink-0 h-14 justify-between lg:justify-end bg-white shadow-md
+                               px-5 md:px-8 z-0">
+
+                    <!--Menu option-->
+                    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+                        <x-icons.menu class="w-6 h-6"/>
+                    </button>
 
                     <div class="flex items-center space-x-4">
-                        <!--Notification option-->
-                        <button class="flex text-gray-400 hover:text-gray-700 focus:outline-none">
-                            <x-icons.notification/>
-                        </button>
+                        <!--Notifications-->
+                        <x-dropdown.menu.option>
+                            <x-slot name="header">
+                                <x-icons.notification/>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown.menu.link>
+                                    {{ __('Notifications') }}
+                                </x-dropdown.menu.link>
+                            </x-slot>
+                        </x-dropdown.menu.option>
 
                         <!--User options-->
-                        <x-dropdown-navbar>
-                            <x-slot name="title">
-                                <span
-                                    class="text-current text-sm hidden sm:block">{{ Auth::user()->getFullName() }}</span>
+                        <x-dropdown.menu.option>
+                            <x-slot name="header">
+                                <span class="text-current text-sm hidden sm:block">
+                                    {{ Auth::user()->getFullName() }}
+                                </span>
                                 <x-user-avatar src="{{ Auth::user()->image->path }}"/>
                             </x-slot>
-                            <x-slot name="options">
-                                <x-dropdown-navbar-link :href="route('profile')">{{ __('Profile') }}
-                                </x-dropdown-navbar-link>
-                                <form method="POST" action="{{ route('logout') }}">
+                            <x-slot name="content">
+                                <x-dropdown.menu.link :href="route('profile')">
+                                    {{ __('Profile') }}
+                                </x-dropdown.menu.link>
+                                <form method="POST" action="{{ route('logout') }}" x-ref="logout">
                                     @csrf
-                                    <x-dropdown-navbar-link :href="route('logout')"
-                                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <x-dropdown.menu.link @click="$refs.logout.submit()">
                                         {{ __('Log out') }}
-                                    </x-dropdown-navbar-link>
+                                    </x-dropdown.menu.link>
                                 </form>
                             </x-slot>
-                        </x-dropdown-navbar>
+                        </x-dropdown.menu.option>
                     </div>
                 </header>
 
-                <!--Content-->
-                <main class="overflow-x-hidden overflow-y-auto">
+                <!-- Page Content -->
+                <main class="overflow-x-hidden overflow-y-auto px-6 py-8">
+                    <!-- Session Status -->
+                    <x-session-status class="mb-4 text-center" :status="session('status')"/>
 
-                    <!-- Page Content -->
-                    <div class="px-6 py-8">
-                        <!-- Session Status -->
-                        <x-session-status class="mb-4 text-center" :status="session('status')"/>
+                    {{ $slot }}
 
-                        {{ $slot }}
-                    </div>
                 </main>
             </div>
         </div>

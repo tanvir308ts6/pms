@@ -1,6 +1,6 @@
 @props([
-'color' => 'blue',
-'hover' => 'green'
+    'color' => 'blue',
+    'hover' => 'green'
 ])
 
 <a {!! $attributes->merge(['class'=> "text-sm text-$color-600 hover:text-$hover-700"]) !!}>
