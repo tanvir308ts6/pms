@@ -70,7 +70,7 @@
                          class="block mt-2 w-full"
                          type="text"
                          name="birthdate"
-                         maxlength="50"
+                         maxlength="10"
                          :value="old('birthdate') ?? $user->birthdate"
                          placeholder="dd/mm/yyyy"/>
 
@@ -85,6 +85,7 @@
                          class="block mt-2 w-full"
                          type="text"
                          name="personal_phone"
+                         maxlength="10"
                          :value="old('personal_phone') ?? $user->personal_phone"
                          placeholder="Example: 0989999999"
                          required/>
@@ -100,6 +101,7 @@
                          class="block mt-2 w-full"
                          type="text"
                          name="home_phone"
+                         maxlength="9"
                          :value="old('home_phone') ?? $user->home_phone"
                          placeholder="Example: 022999999"
                          required/>
