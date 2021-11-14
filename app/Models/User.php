@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasImage;
 
     /**
      * The attributes that are mass assignable.
@@ -90,12 +90,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
-    }
-
-    /*A user can only have one image*/
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
     }
 
     /*A user can only have one assigned jail*/
