@@ -21,8 +21,7 @@
                          :value="old('first_name') ?? $user->first_name"
                          placeholder="Enter your first name"
                          maxlength="35"
-                         required
-                         autofocus/>
+                         required/>
 
                 <x-input-error for="first_name" class="mt-2"/>
             </div>
