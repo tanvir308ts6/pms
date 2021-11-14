@@ -12,12 +12,13 @@
                         bg-white overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
 
                 <!--User role-->
-                <div class="flex items-center justify-center h-auto space-x-2 mx-5 border-b-2 flex-wrap">
+                <a href="{{ route('dashboard') }}"
+                   class="flex items-center justify-center h-auto space-x-2 mx-5 border-b-2 flex-wrap">
                     <x-icons.shield class="w-8 max-h-full h-14 text-gray-500"/>
                     <span class="text-gray-800 text-2xl font-bold uppercase tracking-wide text-center">
                         {{ Auth::user()->role->name }}
                     </span>
-                </div>
+                </a>
 
                 <!--Sidebar options-->
                 <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
@@ -26,7 +27,7 @@
                             <x-icons.director/>
                             <span>{{__("Director")}}</span>
                         </x-slot>
-                        <x-slot name="options">
+                        <x-slot name="content">
                             <x-dropdown.simple.link>{{ __('List directors') }}</x-dropdown.simple.link>
                             <x-dropdown.simple.link>{{ __('Create a new director') }}</x-dropdown.simple.link>
                         </x-slot>
@@ -37,7 +38,7 @@
                             <x-icons.guard/>
                             <span>{{__("Guards")}}</span>
                         </x-slot>
-                        <x-slot name="options">
+                        <x-slot name="content">
                             <x-dropdown.simple.link>{{ __('List guards') }}</x-dropdown.simple.link>
                             <x-dropdown.simple.link>{{ __('Create a new guard') }}</x-dropdown.simple.link>
                         </x-slot>
@@ -48,7 +49,7 @@
                             <x-icons.prisoner/>
                             <span>{{__("Prisoners")}}</span>
                         </x-slot>
-                        <x-slot name="options">
+                        <x-slot name="content">
                             <x-dropdown.simple.link>{{ __('List prisoner') }}</x-dropdown.simple.link>
                             <x-dropdown.simple.link>{{ __('Create a new prisoner') }}</x-dropdown.simple.link>
                         </x-slot>

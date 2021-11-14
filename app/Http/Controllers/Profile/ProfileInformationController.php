@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Profile;
 
+use App\Helpers\DateHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\UpdateProfileInformationRequest;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -15,7 +15,7 @@ class ProfileInformationController extends Controller
 {
     private string $ui_avatar_api = "https://ui-avatars.com/api/?name=*+*&size=128";
 
-    public function create(): view
+    public function edit(): view
     {
         return view('profile.show', [
             'user' => Auth::user(),
@@ -32,7 +32,7 @@ class ProfileInformationController extends Controller
         $user->first_name = $validated['first_name'];
         $user->last_name = $validated['last_name'];
         $user->username = $validated['username'];
-        $user->birthdate = Carbon::createFromFormat('d/m/Y', $validated['birthdate'])->format('Y-m-d');
+        $user->birthdate = $this->verifyDateFormat($validated['birthdate']);
         $user->personal_phone = $validated['personal_phone'];
         $user->home_phone = $validated['home_phone'];
         $user->address = $validated['address'];
@@ -58,5 +58,12 @@ class ProfileInformationController extends Controller
             );
             $user_image->save();
         }
+    }
+
+    private function verifyDateFormat(?string $date): ?string
+    {
+        return isset($date)
+            ? DateHelper::changeDateFormat($date, 'd/m/Y')
+            : null;
     }
 }

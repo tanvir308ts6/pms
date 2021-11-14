@@ -23,7 +23,7 @@
     </button>
     <div x-show="dropdownOpen" class="mt-2 space-y-2 px-7">
 
-       {{ $options }}
+       {{ $content }}
 
     </div>
 </div>

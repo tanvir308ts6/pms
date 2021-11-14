@@ -56,9 +56,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Accessors
      */
-    public function getBirthdateAttribute($value): string
+    public function getBirthdateAttribute($value): ?string
     {
-        return Carbon::parse($value)->format('d/m/Y');
+        return isset($value) ? Carbon::parse($value)->format('d/m/Y') : null;
     }
 
     /**

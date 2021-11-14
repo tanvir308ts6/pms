@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard.home');
     })->name('dashboard');
 
-    Route::get('/profile', [ProfileInformationController::class, 'create'])->name('profile');
+    Route::get('/profile', [ProfileInformationController::class, 'edit'])->name('profile');
     Route::put('/profile', [ProfileInformationController::class, 'update'])->name('profile.update');
     Route::put('/password', [PasswordController::class, 'update'])->name('user-password.update');
 });

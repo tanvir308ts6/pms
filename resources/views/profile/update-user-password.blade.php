@@ -20,8 +20,7 @@
                          name="current_password"
                          placeholder="Enter your current password"
                          maxlength="255"
-                         required
-                         autofocus/>
+                         required />
 
                 <x-input-error for="current_password" class="mt-2"/>
             </div>
