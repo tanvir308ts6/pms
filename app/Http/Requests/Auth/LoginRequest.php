@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -45,10 +47,10 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $email_exist = Auth::attempt(['email' => $this->input('login_field'), 'password' => $this->input('password')], $this->boolean('remember'));
-        $username_exist = Auth::attempt(['username' => $this->input('login_field'), 'password' => $this->input('password')], $this->boolean('remember'));
+        $user = $this->searchForAUserByEmailOrUsername($this->input('login_field'));
 
-        if (!$email_exist || !$username_exist) {
+        //An exception is thrown if the user does not exist or the password is not correct.
+        if (!$this->verifyUserPassword($user, $this->input('password'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -56,8 +58,22 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
     }
+
+    public function searchForAUserByEmailOrUsername(string $user_data): ?User
+    {
+        return User::where('email', $user_data)
+            ->orWhere('username', $user_data)
+            ->first();
+    }
+
+    public function verifyUserPassword(User|null $user, string $password): bool
+    {
+        return !is_null($user) && Hash::check($password, $user->password);
+    }
+
 
     /**
      * Ensure the login request is not rate limited.
