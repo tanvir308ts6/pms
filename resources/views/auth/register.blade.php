@@ -64,33 +64,33 @@
                          required/>
             </div>
 
-            <!--Personal Phone-->
+            <!--Phone number-->
             <div>
-                <x-label for="personal_phone"
-                         :value="__('Personal Phone')"/>
+                <x-label for="phone_number"
+                         :value="__('Phone number')"/>
 
-                <x-input id="personal_phone"
+                <x-input id="phone_number"
                          class="block mt-2 w-full"
                          :focus-color="$primary"
                          type="text"
-                         name="personal_phone"
-                         :value="old('personal_phone')"
-                         placeholder="Enter your personal phone"
+                         name="phone_number"
+                         :value="old('phone_number')"
+                         placeholder="Example: 0989999999"
                          required/>
             </div>
 
-            <!--Home Phone-->
+            <!--Home phone number-->
             <div>
-                <x-label for="home_phone"
-                         :value="__('Home Phone')"/>
+                <x-label for="home_phone_number"
+                         :value="__('Home phone number')"/>
 
-                <x-input id="home_phone"
+                <x-input id="home_phone_number"
                          class="block mt-2 w-full"
                          :focus-color="$primary"
                          type="text"
-                         name="home_phone"
-                         :value="old('home_phone')"
-                         placeholder="Enter your home phone"
+                         name="home_phone_number"
+                         :value="old('home_phone_number')"
+                         placeholder="Example: 022999999"
                          required/>
             </div>
 

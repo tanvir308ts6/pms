@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             /*required columns*/
             $table->string('first_name', 35);
             $table->string('last_name', 35);
-            $table->string('personal_phone', 10);
-            $table->string('home_phone', 9);
+            $table->string('phone_number', 10);
+            $table->string('home_phone_number', 9);
             $table->string('address', 50);
             $table->string('password');
             $table->boolean('state')->default(true);

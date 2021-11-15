@@ -33,8 +33,8 @@ class ProfileInformationController extends Controller
         $user->last_name = $validated['last_name'];
         $user->username = $validated['username'];
         $user->birthdate = $this->verifyDateFormat($validated['birthdate']);
-        $user->personal_phone = $validated['personal_phone'];
-        $user->home_phone = $validated['home_phone'];
+        $user->phone_number = $validated['phone_number'];
+        $user->home_phone_number = $validated['home_phone_number'];
         $user->address = $validated['address'];
         $user->save();
 
