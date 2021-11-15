@@ -87,7 +87,7 @@
                                 <span class="text-current text-sm hidden sm:block">
                                     {{ Auth::user()->getFullName() }}
                                 </span>
-                                <x-user-avatar src="{{ Auth::user()->image->path }}"/>
+                                <x-user-avatar src="{{ Auth::user()->image->getUrl() }}"/>
                             </x-slot>
                             <x-slot name="content">
                                 <x-dropdown.menu.link :href="route('profile')">
