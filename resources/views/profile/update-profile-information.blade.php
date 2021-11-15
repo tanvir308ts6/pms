@@ -10,6 +10,7 @@
         <form method="POST" action="{{ route('profile.update') }}" class="grid grid-cols-6 gap-6">
             @method('PUT')
             @csrf
+
             <!--First name-->
             <div class="col-span-6 sm:col-span-3">
                 <x-label for="first_name" :value="__('First name')"/>
@@ -54,6 +55,20 @@
                          placeholder="Enter your username"
                          maxlength="20"
                          required/>
+
+                <x-input-error for="username" class="mt-2"/>
+            </div>
+
+            <!--Email-->
+            <div class="col-span-6 sm:col-span-3">
+                <x-label for="email" :value="__('Email')"/>
+
+                <x-input id="email"
+                         class="block mt-2 w-full"
+                         type="text"
+                         name="email"
+                         disabled
+                         :value="$user->email"/>
 
                 <x-input-error for="username" class="mt-2"/>
             </div>
@@ -109,7 +124,7 @@
             </div>
 
             <!--Address-->
-            <div class="col-span-6">
+            <div class="col-span-6 sm:col-span-3">
                 <x-label for="address" :value="__('Address')"/>
 
                 <x-input id="address"
