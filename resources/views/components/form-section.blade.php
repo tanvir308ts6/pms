@@ -13,7 +13,7 @@
 
     <!--Form-->
     <div class="mt-5 md:mt-0 md:col-span-2">
-        <div class="shadow-md overflow-hidden sm:rounded-md">
+        <div class="shadow-md overflow-hidden rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
                 {{ $form }}
             </div>
