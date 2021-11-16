@@ -49,17 +49,15 @@ class LoginRequest extends FormRequest
 
         $user = $this->searchForAUserByEmailOrUsername($this->input('login_field'));
 
-        //An exception is thrown if the user does not exist or the password is not correct.
-        if (!$this->verifyUserPassword($user, $this->input('password'))) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+        if ($this->verifyUserState($user) && $this->verifyUserPassword($user, $this->input('password'))) {
+            Auth::login($user, $this->boolean('remember'));
+            RateLimiter::clear($this->throttleKey());
         }
 
-        Auth::login($user, $this->boolean('remember'));
-        RateLimiter::clear($this->throttleKey());
+        RateLimiter::hit($this->throttleKey());
+        throw ValidationException::withMessages([
+            'login_field' => __('auth.failed'),
+        ]);
     }
 
     public function searchForAUserByEmailOrUsername(string $user_data): ?User
@@ -74,6 +72,10 @@ class LoginRequest extends FormRequest
         return !is_null($user) && Hash::check($password, $user->password);
     }
 
+    public function verifyUserState(User|null $user): bool
+    {
+        return !is_null($user) && $user->state;
+    }
 
     /**
      * Ensure the login request is not rate limited.
