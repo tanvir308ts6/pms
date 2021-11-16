@@ -69,6 +69,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return "$this->first_name $this->last_name";
     }
 
+    public function hasRole(string $role): bool
+    {
+        return $this->role->name === $role;
+    }
+
     /**
      * Relationships
      *

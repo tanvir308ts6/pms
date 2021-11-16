@@ -49,7 +49,11 @@ class LoginRequest extends FormRequest
 
         $user = $this->searchForAUserByEmailOrUsername($this->input('login_field'));
 
-        if ($this->verifyUserState($user) && $this->verifyUserPassword($user, $this->input('password'))) {
+        if (
+            !$this->verifyUserRole($user, 'prisoner')
+            && $this->verifyUserState($user)
+            && $this->verifyUserPassword($user, $this->input('password'))
+        ) {
             Auth::login($user, $this->boolean('remember'));
             RateLimiter::clear($this->throttleKey());
         }
@@ -75,6 +79,11 @@ class LoginRequest extends FormRequest
     public function verifyUserState(User|null $user): bool
     {
         return !is_null($user) && $user->state;
+    }
+
+    public function verifyUserRole(User|null $user, string $role): bool
+    {
+        return !is_null($user) && $user->hasRole($role);
     }
 
     /**
