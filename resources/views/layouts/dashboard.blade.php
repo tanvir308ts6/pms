@@ -22,6 +22,8 @@
 
                 <!--Sidebar options-->
                 <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
+
+                    @can('manage-directors')
                     <x-dropdown.simple.option class="w-full">
                         <x-slot name="header">
                             <x-icons.director/>
@@ -32,7 +34,9 @@
                             <x-dropdown.simple.link>{{ __('Create a new director') }}</x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
+                    @endcan
 
+                    @can('manage-guards')
                     <x-dropdown.simple.option class="w-full">
                         <x-slot name="header">
                             <x-icons.guard/>
@@ -43,7 +47,9 @@
                             <x-dropdown.simple.link>{{ __('Create a new guard') }}</x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
+                    @endcan
 
+                    @can('manage-prisoners')
                     <x-dropdown.simple.option title="Hello world" class="w-full">
                         <x-slot name="header">
                             <x-icons.prisoner/>
@@ -54,6 +60,8 @@
                             <x-dropdown.simple.link>{{ __('Create a new prisoner') }}</x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
+                    @endcan
+
                 </nav>
             </div>
 

@@ -19,14 +19,6 @@ class Role extends Model
     protected $fillable = ['name'];
 
     /**
-     * Accessors
-     */
-    public function getNameAttribute($value): string
-    {
-        return Str::ucfirst($value);
-    }
-
-    /**
      * Relationships
      *
      */
