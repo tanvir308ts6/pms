@@ -24,13 +24,15 @@
                 <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
 
                     @can('manage-directors')
-                    <x-dropdown.simple.option class="w-full">
+                    <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('directors')">
                         <x-slot name="header">
                             <x-icons.director/>
                             <span>{{__("Director")}}</span>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown.simple.link>{{ __('List directors') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link :href="route('directors')">
+                                {{ __('List directors') }}
+                            </x-dropdown.simple.link>
                             <x-dropdown.simple.link>{{ __('Create a new director') }}</x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Profile\ProfileAvatarController;
 use App\Http\Controllers\Profile\ProfileInformationController;
+use App\Http\Controllers\User\DirectorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/profile', [ProfileInformationController::class, 'update'])->name('profile.update');
     Route::put('/password', [PasswordController::class, 'update'])->name('user-password.update');
     Route::put('/user-avatar', [ProfileAvatarController::class, 'update'])->name('user-avatar.update');
+
+    /*The admin user can perform the following actions*/
+    Route::get('/directors', [DirectorController::class, 'index'])->name('directors');
 });
 
 require __DIR__ . '/auth.php';
