@@ -9,8 +9,22 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public string $view_title = "View title";
+    public string $view_description = "View Description";
+
     public function __construct()
     {
+
+    }
+
+    public function setViewTitle(string $title): void
+    {
+        $this->view_title = $title;
+    }
+
+    public function setViewDescription(string $description): void
+    {
+        $this->view_description = $description;
     }
 
     public function getUsers(): LengthAwarePaginator
@@ -23,10 +37,11 @@ class UserController extends Controller
     /*List users*/
     public function index(): View
     {
-        $users =  $this->getUsers();
+        $users = $this->getUsers();
+
         return view('dashboard.user.index', [
-            'title' => 'List of users',
-            'description' => 'List of users registered in the system.',
+            'title' => $this->view_title,
+            'description' => $this->view_description,
             'users' => $users,
         ]);
     }
