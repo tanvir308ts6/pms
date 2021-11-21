@@ -1,8 +1,8 @@
 @props([
     'color' => 'blue',
-    'hover' => 'green'
+    'hover' => 'gray'
 ])
 
-<a {!! $attributes->merge(['class'=> "text-sm text-$color-600 hover:text-$hover-700"]) !!}>
+<a {{ $attributes->merge(['class'=> "text-sm text-$color-600 hover:text-$hover-700 cursor-pointer"]) }}>
     {{$slot}}
 </a>

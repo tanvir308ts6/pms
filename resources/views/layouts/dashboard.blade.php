@@ -68,7 +68,7 @@
             </div>
 
             <!--Main view-->
-            <div class="flex-1 flex flex-col">
+            <div class="flex-1 flex flex-col overflow-y-hidden">
                 <!--Navbar-->
                 <header class="flex flex-shrink-0 h-14 justify-between lg:justify-end bg-white shadow-md
                                px-5 md:px-8 z-0">
