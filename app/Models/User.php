@@ -11,11 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasImage;
+
+    private string $ui_avatar_api = "https://ui-avatars.com/api/?name=*+*&size=128";
 
     /**
      * The attributes that are mass assignable.
@@ -74,6 +77,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role->name === $role;
     }
 
+    public function generateAvatarUrl(): string
+    {
+        return Str::replaceArray(
+            '*',
+            [
+                $this->first_name,
+                $this->last_name
+            ],
+            $this->ui_avatar_api
+        );
+    }
     /**
      * Relationships
      *

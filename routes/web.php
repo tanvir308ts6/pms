@@ -32,7 +32,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/user-avatar', [ProfileAvatarController::class, 'update'])->name('user-avatar.update');
 
     /*The admin user can perform the following actions*/
-    Route::get('/directors', [DirectorController::class, 'index'])->name('directors');
+    Route::get('/directors', [DirectorController::class, 'index'])->name('director.index');
+    Route::get('/directors/create', [DirectorController::class, 'create'])->name('director.create');
+    Route::post('/directors/create', [DirectorController::class, 'store'])->name('director.store');
 });
 
 require __DIR__ . '/auth.php';

@@ -65,12 +65,10 @@
 
                 <x-input id="email"
                          class="block mt-2 w-full"
-                         type="text"
+                         type="email"
                          name="email"
                          disabled
                          :value="$user->email"/>
-
-                <x-input-error for="username" class="mt-2"/>
             </div>
 
             <!--Birthdate-->
