@@ -46,7 +46,7 @@
                             <x-link color="gray" class="inline-flex">
                                 <x-icons.show/>
                             </x-link>
-                            <x-link color="indigo" class="inline-flex">
+                            <x-link color="indigo" class="inline-flex" href="{{ route('director.edit', ['user' => $director->id]) }}">
                                 <x-icons.edit/>
                             </x-link>
                             <x-link color="red" class="inline-flex">

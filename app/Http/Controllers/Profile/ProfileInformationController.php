@@ -13,8 +13,6 @@ use Illuminate\View\View;
 
 class ProfileInformationController extends Controller
 {
-    private string $ui_avatar_api = "https://ui-avatars.com/api/?name=*+*&size=128";
-
     public function edit(): view
     {
         return view('profile.show', [
@@ -48,14 +46,7 @@ class ProfileInformationController extends Controller
         $user_image = $user->image;
         $image_path = $user_image->path;
         if (Str::startsWith($image_path, 'https://')) {
-            $user_image->path = Str::replaceArray(
-                '*',
-                [
-                    $user->first_name,
-                    $user->last_name
-                ],
-                $this->ui_avatar_api
-            );
+            $user_image->path = $user->generateAvatarUrl();
             $user_image->save();
         }
     }

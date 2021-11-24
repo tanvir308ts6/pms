@@ -35,6 +35,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/directors', [DirectorController::class, 'index'])->name('director.index');
     Route::get('/directors/create', [DirectorController::class, 'create'])->name('director.create');
     Route::post('/directors/create', [DirectorController::class, 'store'])->name('director.store');
+
+    Route::get('/directors/update/{user}', [DirectorController::class, 'edit'])->name('director.edit');
+    Route::put('/directors/update/{user}', [DirectorController::class, 'update'])->name('director.update');
 });
 
 require __DIR__ . '/auth.php';

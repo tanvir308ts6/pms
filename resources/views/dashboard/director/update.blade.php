@@ -3,17 +3,18 @@
     <div class="mt-2">
         <x-form-section>
 
-            <x-slot name="title">{{ __("Create a new director") }}</x-slot>
+            <x-slot name="title">{{ __("Update director") }}</x-slot>
 
             <x-slot name="description">
-                {{ __("You can register a new director.") }}
+                {{ __("You can update the director's information.") }}
             </x-slot>
 
             <x-slot name="form">
-                <form method="POST" action="{{ route('director.create') }}" class="grid grid-cols-6 gap-6">
-                @csrf
+                <form method="POST" action="{{ route('director.update', ['user' => $director->id]) }}" class="grid grid-cols-6 gap-6">
+                    @method('PUT')
+                    @csrf
 
-                <!--First name-->
+                    <!--First name-->
                     <div class="col-span-6 sm:col-span-3">
                         <x-label for="first_name" :value="__('First name')"/>
 
@@ -21,7 +22,7 @@
                                  class="block mt-2 w-full"
                                  type="text"
                                  name="first_name"
-                                 :value="old('first_name')"
+                                 :value="old('first_name') ?? $director->first_name"
                                  placeholder="Enter the first name"
                                  maxlength="35"
                                  required/>
@@ -37,7 +38,7 @@
                                  class="block mt-2 w-full"
                                  type="text"
                                  name="last_name"
-                                 :value="old('last_name')"
+                                 :value="old('last_name') ?? $director->last_name"
                                  placeholder="Enter the last name"
                                  maxlength="35"
                                  required/>
@@ -53,7 +54,7 @@
                                  class="block mt-2 w-full"
                                  type="text"
                                  name="username"
-                                 :value="old('username')"
+                                 :value="old('username') ?? $director->username"
                                  placeholder="Enter the username"
                                  maxlength="20"
                                  required/>
@@ -69,7 +70,7 @@
                                  class="block mt-2 w-full"
                                  type="email"
                                  name="email"
-                                 :value="old('email')"
+                                 :value="old('email') ?? $director->email"
                                  placeholder="Enter the email"
                                  required/>
 
@@ -88,7 +89,7 @@
                                  type="text"
                                  name="birthdate"
                                  maxlength="10"
-                                 :value="old('birthdate')"
+                                 :value="old('birthdate') ?? $director->birthdate"
                                  placeholder="dd/mm/yyyy"/>
 
                         <x-input-error for="birthdate" class="mt-2"/>
@@ -103,7 +104,7 @@
                                  type="text"
                                  name="phone_number"
                                  maxlength="10"
-                                 :value="old('phone_number')"
+                                 :value="old('phone_number') ?? $director->phone_number"
                                  placeholder="Example: 0989999999"
                                  required/>
 
@@ -119,7 +120,7 @@
                                  type="text"
                                  name="home_phone_number"
                                  maxlength="9"
-                                 :value="old('home_phone_number')"
+                                 :value="old('home_phone_number') ?? $director->home_phone_number"
                                  placeholder="Example: 022999999"
                                  required/>
 
@@ -134,7 +135,7 @@
                                  class="block mt-2 w-full"
                                  type="text"
                                  name="address"
-                                 :value="old('address')"
+                                 :value="old('address') ?? $director->address"
                                  placeholder="Enter the address"
                                  maxlength="50"
                                  required/>
@@ -144,7 +145,7 @@
 
                     <!--Actions-->
                     <div class="col-span-6 flex justify-end">
-                        <x-button class="min-w-max">{{ __('Create') }}</x-button>
+                        <x-button class="min-w-max">{{ __('Update') }}</x-button>
                     </div>
                 </form>
             </x-slot>
