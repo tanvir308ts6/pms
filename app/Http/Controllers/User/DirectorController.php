@@ -7,15 +7,12 @@ use App\Helpers\DateHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateUserInformationRequest;
 use App\Http\Requests\User\UserInformationRequest;
-use App\Http\Requests\User\UserRequest;
 use App\Models\Role;
 use App\Helpers\PasswordHelper;
 use App\Models\User;
 use App\Notifications\RegisteredUserNotification;
-use App\Notifications\VerifyUserEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class DirectorController extends Controller
@@ -83,9 +80,11 @@ class DirectorController extends Controller
     }
 
     /*Display the data of a specific director */
-    public function show($id)
+    public function show(User $user): View
     {
-        //
+        return view('dashboard.director.show', [
+            'director' => $user,
+        ]);
     }
 
     /*Director actualization form*/
@@ -114,7 +113,7 @@ class DirectorController extends Controller
         $director->address = $validated['address'];
         $director->save();
 
-        $this->updateUIAvatar($director);
+        $director->updateUIAvatar($director->generateAvatarUrl());
 
         $this->verifyEmailChange($director, $old_email);
 
@@ -126,7 +125,7 @@ class DirectorController extends Controller
     {
         $director = $user;
         $state = $director->state;
-        $message = $state ? 'activated' : 'inactivated';
+        $message = $state ? 'inactivated' : 'activated';
 
         $director->state = !$state;
         $director->save();
@@ -148,16 +147,6 @@ class DirectorController extends Controller
                     $password_generated
                 )
             );
-        }
-    }
-
-    private function updateUIAvatar(User $user): void
-    {
-        $user_image = $user->image;
-        $image_path = $user_image->path;
-        if (Str::startsWith($image_path, 'https://')) {
-            $user_image->path = $user->generateAvatarUrl();
-            $user_image->save();
         }
     }
 }

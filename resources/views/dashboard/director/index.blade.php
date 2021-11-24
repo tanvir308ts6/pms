@@ -43,7 +43,8 @@
                         </x-table.td>
 
                         <x-table.td class="space-x-3 whitespace-nowrap">
-                            <x-link color="gray" class="inline-flex">
+                            <x-link color="gray" class="inline-flex"
+                                    href="{{ route('director.show', ['user' => $director->id]) }}">
                                 <x-icons.show/>
                             </x-link>
                             <x-link color="indigo" class="inline-flex"

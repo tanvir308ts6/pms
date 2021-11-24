@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/directors', [DirectorController::class, 'index'])->name('director.index');
     Route::get('/directors/create', [DirectorController::class, 'create'])->name('director.create');
     Route::post('/directors/create', [DirectorController::class, 'store'])->name('director.store');
-
+    Route::get('/directors/{user}', [DirectorController::class, 'show'])->name('director.show');
     Route::get('/directors/update/{user}', [DirectorController::class, 'edit'])->name('director.edit');
     Route::put('/directors/update/{user}', [DirectorController::class, 'update'])->name('director.update');
     Route::get('/directors/destroy/{user}', [DirectorController::class, 'destroy'])->name('director.destroy');
