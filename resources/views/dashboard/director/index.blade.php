@@ -46,11 +46,17 @@
                             <x-link color="gray" class="inline-flex">
                                 <x-icons.show/>
                             </x-link>
-                            <x-link color="indigo" class="inline-flex" href="{{ route('director.edit', ['user' => $director->id]) }}">
+                            <x-link color="indigo" class="inline-flex"
+                                    href="{{ route('director.edit', ['user' => $director->id]) }}">
                                 <x-icons.edit/>
                             </x-link>
-                            <x-link color="red" class="inline-flex">
-                                <x-icons.delete/>
+                            <x-link color="{{ $director->state ? 'red' : 'green'}}" class="inline-flex"
+                                    href="{{ route('director.destroy', ['user' => $director->id]) }}">
+                                @if($director->state)
+                                    <x-icons.delete/>
+                                @else
+                                    <x-icons.check/>
+                                @endif
                             </x-link>
                         </x-table.td>
                     </tr>

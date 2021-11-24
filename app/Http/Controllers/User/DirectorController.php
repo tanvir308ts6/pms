@@ -122,9 +122,16 @@ class DirectorController extends Controller
     }
 
     /*Director's logic deleted*/
-    public function destroy($id)
+    public function destroy(User $user): RedirectResponse
     {
-        //
+        $director = $user;
+        $state = $director->state;
+        $message = $state ? 'activated' : 'inactivated';
+
+        $director->state = !$state;
+        $director->save();
+
+        return back()->with('status', "Director $message successfully");
     }
 
     private function verifyEmailChange(User $director, string $old_email): void

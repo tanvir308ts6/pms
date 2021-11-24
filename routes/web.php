@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/directors/update/{user}', [DirectorController::class, 'edit'])->name('director.edit');
     Route::put('/directors/update/{user}', [DirectorController::class, 'update'])->name('director.update');
+    Route::get('/directors/destroy/{user}', [DirectorController::class, 'destroy'])->name('director.destroy');
 });
 
 require __DIR__ . '/auth.php';
