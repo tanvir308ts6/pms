@@ -57,7 +57,7 @@ class DirectorController extends Controller
             'last_name' => $validated['last_name'],
             'username' => $validated['username'],
             'email' => $validated['email'],
-            'birthdate' => $validated['birthdate'],
+            'birthdate' => DateHelper::verifyDateFormat($validated['birthdate']),
             'phone_number' => $validated['phone_number'],
             'home_phone_number' => $validated['home_phone_number'],
             'address' => $validated['address'],
@@ -103,10 +103,4 @@ class DirectorController extends Controller
         //
     }
 
-    private function verifyDateFormat(?string $date): ?string
-    {
-        return isset($date)
-            ? DateHelper::changeDateFormat($date, 'd/m/Y')
-            : null;
-    }
 }

@@ -14,4 +14,11 @@ class DateHelper
     {
         return Carbon::createFromFormat($date_format, $date)->format($expected_format);
     }
+
+    public static function verifyDateFormat(?string $date): ?string
+    {
+        return isset($date)
+            ? self::changeDateFormat($date, 'd/m/Y')
+            : null;
+    }
 }

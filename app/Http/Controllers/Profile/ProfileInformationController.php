@@ -32,7 +32,7 @@ class ProfileInformationController extends Controller
         $user->first_name = $validated['first_name'];
         $user->last_name = $validated['last_name'];
         $user->username = $validated['username'];
-        $user->birthdate = $this->verifyDateFormat($validated['birthdate']);
+        $user->birthdate = DateHelper::verifyDateFormat($validated['birthdate']);
         $user->phone_number = $validated['phone_number'];
         $user->home_phone_number = $validated['home_phone_number'];
         $user->address = $validated['address'];
@@ -58,12 +58,5 @@ class ProfileInformationController extends Controller
             );
             $user_image->save();
         }
-    }
-
-    private function verifyDateFormat(?string $date): ?string
-    {
-        return isset($date)
-            ? DateHelper::changeDateFormat($date, 'd/m/Y')
-            : null;
     }
 }
