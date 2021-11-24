@@ -9,6 +9,8 @@ use App\Http\Requests\User\UserInformationRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Models\Role;
 use App\Helpers\PasswordHelper;
+use App\Notifications\RegisteredUserNotification;
+use App\Notifications\VerifyUserEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -66,7 +68,13 @@ class DirectorController extends Controller
             'path' => $director->generateAvatarUrl(),
         ]);
 
-        //TODO: send an email to the created user
+        $director->notify(
+            new RegisteredUserNotification(
+                $director->getFullName(),
+                $director_role->name,
+                $password_generated
+            )
+        );
 
         return back()->with('status', 'Director created successfully');
     }
