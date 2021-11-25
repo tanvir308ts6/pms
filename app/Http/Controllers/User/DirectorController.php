@@ -20,6 +20,7 @@ class DirectorController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-directors');
+        $this->middleware('verify.user.role:director')->except('index', 'create', 'store');
     }
 
     /*List of directors*/
