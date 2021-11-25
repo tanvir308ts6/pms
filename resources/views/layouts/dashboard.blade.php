@@ -73,7 +73,7 @@
             <div class="flex-1 flex flex-col overflow-y-hidden">
                 <!--Navbar-->
                 <header class="flex flex-shrink-0 h-14 justify-between lg:justify-end bg-white shadow-md
-                               px-5 md:px-8 z-0">
+                               px-5 md:px-8 z-50">
 
                     <!--Menu option-->
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
