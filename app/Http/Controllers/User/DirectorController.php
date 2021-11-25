@@ -20,7 +20,7 @@ class DirectorController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-directors');
-        $this->middleware('verify.user.role:director')->except('index', 'create', 'store');
+        $this->middleware('verify.user.role:director')->except('index', 'create', 'store', 'search');
     }
 
     /*List of directors*/
@@ -132,6 +132,26 @@ class DirectorController extends Controller
         $director->save();
 
         return back()->with('status', "Director $message successfully");
+    }
+
+    public function search(): View
+    {
+        $director_role = Role::where('name', 'director')->first();
+
+        //$directors = User::where('role_id', $director_role->id);
+        $directors = $director_role->users();
+
+        if (request('search')) {
+            $directors = $directors->where('username', 'like', '%' . request('search') . '%');
+        }
+
+        $directors = $directors->orderBy('first_name', 'asc')
+            ->orderBy('last_name', 'asc')
+            ->paginate();
+
+        return view('dashboard.director.index', [
+            'directors' => $directors,
+        ]);
     }
 
     private function verifyEmailChange(User $director, string $old_email): void

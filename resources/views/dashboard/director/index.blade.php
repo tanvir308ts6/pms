@@ -1,12 +1,21 @@
 <x-dashboard-layout>
     <div class="bg-white p-6 md:p-8 shadow-md">
-        <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium text-gray-900">
-                {{ __("List of directors") }}
-            </h3>
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __("List of users with the role of director and who have been registered in the system.") }}
-            </p>
+        <div class="grid grid-cols-12 gap-3 px-4 sm:px-0">
+            <div class="col-span-12 md:col-span-8">
+                <h3 class="text-lg font-medium text-gray-900">
+                    {{ __("List of directors") }}
+                </h3>
+                <p class="mt-1 text-sm text-gray-600">
+                    {{ __("List of users with the role of director and who have been registered in the system.") }}
+                </p>
+            </div>
+
+            <div class="col-span-12 md:col-span-4 flex items-center mx-auto max-w-max md:w-full">
+                <form method="GET" action="{{ route('director.search') }}" >
+                    <x-search/>
+                </form>
+            </div>
+
         </div>
 
         <x-table.list>
