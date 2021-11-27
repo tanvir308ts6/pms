@@ -41,14 +41,18 @@
                     @endcan
 
                     @can('manage-guards')
-                    <x-dropdown.simple.option class="w-full">
+                    <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('guard.*')">
                         <x-slot name="header">
                             <x-icons.guard/>
                             <span>{{__("Guards")}}</span>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown.simple.link>{{ __('List guards') }}</x-dropdown.simple.link>
-                            <x-dropdown.simple.link>{{ __('Create a new guard') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link :href="route('guard.index')">
+                                {{ __('List guards') }}
+                            </x-dropdown.simple.link>
+                            <x-dropdown.simple.link :href="route('guard.create')">
+                                {{ __('Create a new guard    ') }}
+                            </x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
                     @endcan

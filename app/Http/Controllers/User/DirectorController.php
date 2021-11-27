@@ -97,7 +97,7 @@ class DirectorController extends Controller
     }
 
     /*Save the update of the director's record*/
-    public function update(UpdateUserInformationRequest $request, User $user)
+    public function update(UpdateUserInformationRequest $request, User $user): RedirectResponse
     {
         $validated = $request->validated();
 
