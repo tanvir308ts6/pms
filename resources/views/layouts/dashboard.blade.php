@@ -51,21 +51,25 @@
                                 {{ __('List guards') }}
                             </x-dropdown.simple.link>
                             <x-dropdown.simple.link :href="route('guard.create')">
-                                {{ __('Create a new guard    ') }}
+                                {{ __('Create a new guard') }}
                             </x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
                     @endcan
 
                     @can('manage-prisoners')
-                    <x-dropdown.simple.option title="Hello world" class="w-full">
+                    <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('prisoner.*')">
                         <x-slot name="header">
                             <x-icons.prisoner/>
                             <span>{{__("Prisoners")}}</span>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown.simple.link>{{ __('List prisoner') }}</x-dropdown.simple.link>
-                            <x-dropdown.simple.link>{{ __('Create a new prisoner') }}</x-dropdown.simple.link>
+                            <x-dropdown.simple.link :href="route('prisoner.index')">
+                                {{ __('List prisoners') }}
+                            </x-dropdown.simple.link>
+                            <x-dropdown.simple.link :href="route('prisoner.create')">
+                                {{ __('Create a new prisoner') }}
+                            </x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
                     @endcan

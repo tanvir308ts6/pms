@@ -22,7 +22,7 @@ class GuardController extends Controller
         $this->middleware('verify.user.role:guard')->except('index', 'create', 'store', 'search');
     }
 
-    /*List of directors*/
+    /*List of guards*/
     public function index(): View
     {
         $guard_role = Role::where('name', 'guard')->first();
@@ -100,7 +100,7 @@ class GuardController extends Controller
         ]);
     }
 
-    /*Save the update of the director's record*/
+    /*Save the update of the guard's record*/
     public function update(UpdateUserInformationRequest $request, User $user): RedirectResponse
     {
         $validated = $request->validated();
@@ -154,5 +154,4 @@ class GuardController extends Controller
             );
         }
     }
-
 }
