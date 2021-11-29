@@ -6,6 +6,7 @@ use App\Http\Controllers\Profile\ProfileInformationController;
 use App\Http\Controllers\User\DirectorController;
 use App\Http\Controllers\User\GuardController;
 use App\Http\Controllers\User\PrisonerController;
+use App\Http\Controllers\Ward\WardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/prisoners/update/{user}', [PrisonerController::class, 'edit'])->name('prisoner.edit');
     Route::put('/prisoners/update/{user}', [PrisonerController::class, 'update'])->name('prisoner.update');
     Route::get('/prisoners/destroy/{user}', [PrisonerController::class, 'destroy'])->name('prisoner.destroy');
+
+    Route::get('/wards', [WardController::class, 'index'])->name('ward.index');
+    Route::get('/wards/create', [WardController::class, 'create'])->name('ward.create');
+    Route::post('/wards/create', [WardController::class, 'store'])->name('ward.store');
+    Route::get('/wards/{ward}', [WardController::class, 'show'])->name('ward.show');
+    Route::get('/wards/update/{ward}', [WardController::class, 'edit'])->name('ward.edit');
+    Route::put('/wards/update/{ward}', [WardController::class, 'update'])->name('ward.update');
+    Route::get('/wards/destroy/{ward}', [WardController::class, 'destroy'])->name('ward.destroy');
 });
 
 require __DIR__ . '/auth.php';
