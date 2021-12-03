@@ -47,7 +47,10 @@
 
                     <!--Description-->
                     <div class="col-span-6">
-                        <x-label for="description" :value="__('Description')"/>
+                        <x-label for="description">
+                            {{ __('Description') }}
+                            <span class="text-sm ml-2 text-gray-400"> ({{ __('Optional') }})</span>
+                        </x-label>
 
                         <x-input id="description"
                                  class="block mt-2 w-full"
