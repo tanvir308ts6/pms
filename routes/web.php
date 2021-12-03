@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Jail\JailController;
 use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Profile\ProfileAvatarController;
 use App\Http\Controllers\Profile\ProfileInformationController;
@@ -67,6 +68,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/wards/update/{ward}', [WardController::class, 'edit'])->name('ward.edit');
     Route::put('/wards/update/{ward}', [WardController::class, 'update'])->name('ward.update');
     Route::get('/wards/destroy/{ward}', [WardController::class, 'destroy'])->name('ward.destroy');
+
+    Route::get('/jails', [JailController::class, 'index'])->name('jail.index');
+    Route::get('/jails/create', [JailController::class, 'create'])->name('jail.create');
+    Route::post('/jails/create', [JailController::class, 'store'])->name('jail.store');
+    Route::get('/jails/{jail}', [JailController::class, 'show'])->name('jail.show');
+    Route::get('/jails/update/{jail}', [JailController::class, 'edit'])->name('jail.edit');
+    Route::put('/jails/update/{jail}', [JailController::class, 'update'])->name('jail.update');
+    Route::get('/jails/destroy/{jail}', [JailController::class, 'destroy'])->name('jail.destroy');
 });
 
 require __DIR__ . '/auth.php';

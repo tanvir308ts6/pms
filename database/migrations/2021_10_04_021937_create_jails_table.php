@@ -18,7 +18,7 @@ class CreateJailsTable extends Migration
 
             /*required columns*/
             $table->string('name', 45);
-            $table->string('code');
+            $table->string('code', 45);
             $table->enum('type', ['low', 'medium', 'high']);
             $table->unsignedBigInteger('capacity');
             $table->boolean('state')->default(true);

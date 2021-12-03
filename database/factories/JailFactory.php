@@ -25,7 +25,7 @@ class JailFactory extends Factory
             'name' => $this->faker->streetName,
             'code' => $this->faker->iban(),
             'type' => $this->faker->randomElement(['low', 'medium', 'high']),
-            'capacity' => $this->faker->numberBetween($min = 4, $max = 8),
+            'capacity' => $this->faker->numberBetween($min = 2, $max = 5),
             'description' => $this->faker->text(255),
         ];
     }

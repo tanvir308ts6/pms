@@ -64,7 +64,7 @@ class WardController extends Controller
         ]);
     }
 
-    public function update(WardInformationRequest $request, Ward $ward)
+    public function update(WardInformationRequest $request, Ward $ward): RedirectResponse
     {
         $validated = $request->validated();
 
