@@ -56,10 +56,12 @@
                                     href="{{ route('guard.show', ['user' => $guard->id]) }}">
                                 <x-icons.show/>
                             </x-link>
-                            <x-link color="indigo" class="inline-flex"
-                                    href="{{ route('guard.edit', ['user' => $guard->id]) }}">
-                                <x-icons.edit/>
-                            </x-link>
+                            @if ($guard->state)
+                                <x-link color="indigo" class="inline-flex"
+                                        href="{{ route('guard.edit', ['user' => $guard->id]) }}">
+                                    <x-icons.edit/>
+                                </x-link>
+                            @endif
                             <x-link color="{{ $guard->state ? 'red' : 'green'}}" class="inline-flex"
                                     href="{{ route('guard.destroy', ['user' => $guard->id]) }}">
                                 @if($guard->state)

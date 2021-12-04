@@ -56,10 +56,12 @@
                                     href="{{ route('prisoner.show', ['user' => $prisoner->id]) }}">
                                 <x-icons.show/>
                             </x-link>
-                            <x-link color="indigo" class="inline-flex"
-                                    href="{{ route('prisoner.update', ['user' => $prisoner->id]) }}">
-                                <x-icons.edit/>
-                            </x-link>
+                            @if ($prisoner->state)
+                                <x-link color="indigo" class="inline-flex"
+                                        href="{{ route('prisoner.update', ['user' => $prisoner->id]) }}">
+                                    <x-icons.edit/>
+                                </x-link>
+                            @endif
                             <x-link color="{{ $prisoner->state ? 'red' : 'green'}}" class="inline-flex"
                                     href="{{ route('prisoner.destroy', ['user' => $prisoner->id]) }}">
                                 @if($prisoner->state)

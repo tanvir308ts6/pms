@@ -56,10 +56,12 @@
                                     href="{{ route('director.show', ['user' => $director->id]) }}">
                                 <x-icons.show/>
                             </x-link>
-                            <x-link color="indigo" class="inline-flex"
-                                    href="{{ route('director.edit', ['user' => $director->id]) }}">
-                                <x-icons.edit/>
-                            </x-link>
+                            @if ($director->state)
+                                <x-link color="indigo" class="inline-flex"
+                                        href="{{ route('director.edit', ['user' => $director->id]) }}">
+                                    <x-icons.edit/>
+                                </x-link>
+                            @endif
                             <x-link color="{{ $director->state ? 'red' : 'green'}}" class="inline-flex"
                                     href="{{ route('director.destroy', ['user' => $director->id]) }}">
                                 @if($director->state)

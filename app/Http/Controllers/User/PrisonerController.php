@@ -18,6 +18,7 @@ class PrisonerController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-prisoners');
+        $this->middleware('active.user')->only('edit', 'update');
         $this->middleware('verify.user.role:prisoner')->except('index', 'create', 'store');
     }
 
