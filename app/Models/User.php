@@ -102,6 +102,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function wards(): BelongsToMany
     {
         return $this->belongsToMany(Ward::class)
+            ->wherePivot('state', true)
             ->withTimestamps();
     }
 

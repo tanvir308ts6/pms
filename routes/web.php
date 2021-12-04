@@ -92,6 +92,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         GuardWardController::class,
         'index'
     ])->name('assignment.guards-wards.index');
+    Route::put('/assignment/guards-to-wards/{user}', [
+        GuardWardController::class,
+        'update'
+    ])->name('assignment.guards-wards.update');
 });
 
 require __DIR__ . '/auth.php';

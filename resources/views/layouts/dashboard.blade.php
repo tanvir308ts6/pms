@@ -179,6 +179,8 @@
                 <main class="overflow-x-hidden overflow-y-auto px-6 py-8">
                     <!-- Session Status -->
                     <x-session-status class="mb-4 text-center" :status="session('status')" :color="session('color')"/>
+                    <!-- Validation Errors -->
+                    <x-validation-errors class="mb-4" :errors="$errors" />
 
                     {{ $slot }}
 

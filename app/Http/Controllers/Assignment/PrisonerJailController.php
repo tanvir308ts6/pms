@@ -15,7 +15,7 @@ class PrisonerJailController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-assignment');
-        $this->middleware('verify.user.role:prisoner')->except('index', 'update');
+        $this->middleware('verify.user.role:prisoner')->except('index');
     }
 
     public function index(): View

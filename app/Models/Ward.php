@@ -27,6 +27,7 @@ class Ward extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
+            ->wherePivot('state', true)
             ->withTimestamps();
     }
 
