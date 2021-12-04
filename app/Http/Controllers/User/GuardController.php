@@ -132,6 +132,10 @@ class GuardController extends Controller
         $state = $guard->state;
         $message = $state ? 'inactivated' : 'activated';
 
+        if ($state) {
+            $this->disableAllGuardRelationshipsWithWards($guard);
+        }
+
         $guard->state = !$state;
         $guard->save();
 
@@ -153,5 +157,12 @@ class GuardController extends Controller
                 )
             );
         }
+    }
+
+    private function disableAllGuardRelationshipsWithWards(User $guard): void
+    {
+        //All ward relationships are deactivated.
+        $guard_wards_id = $guard->wards->modelKeys();
+        $guard->wards()->syncWithPivotValues($guard_wards_id, ['state' => false]);
     }
 }
