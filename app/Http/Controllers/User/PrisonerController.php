@@ -18,7 +18,7 @@ class PrisonerController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-prisoners');
-        $this->middleware('verify.user.role:prisoner')->except('index', 'create', 'store', 'search');
+        $this->middleware('verify.user.role:prisoner')->except('index', 'create', 'store');
     }
 
     /*List of prisoners*/

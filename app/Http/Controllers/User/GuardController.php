@@ -19,7 +19,7 @@ class GuardController extends Controller
     public function __construct()
     {
         $this->middleware('can:manage-guards');
-        $this->middleware('verify.user.role:guard')->except('index', 'create', 'store', 'search');
+        $this->middleware('verify.user.role:guard')->except('index', 'create', 'store');
     }
 
     /*List of guards*/

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Assignment\GuardWardController;
+use App\Http\Controllers\Assignment\PrisonerJailController;
 use App\Http\Controllers\Jail\JailController;
 use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Profile\ProfileAvatarController;
@@ -76,6 +78,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/jails/update/{jail}', [JailController::class, 'edit'])->name('jail.edit');
     Route::put('/jails/update/{jail}', [JailController::class, 'update'])->name('jail.update');
     Route::get('/jails/destroy/{jail}', [JailController::class, 'destroy'])->name('jail.destroy');
+
+    //Assignments
+    Route::get('/assignment/prisoners-to-jails', [
+        PrisonerJailController::class,
+        'index'
+    ])->name('assignment.prisoners-jails.index');
+    Route::put('/assignment/prisoners-to-jails/{user}', [
+        PrisonerJailController::class,
+        'update'
+    ])->name('assignment.prisoners-jails.update');
+    Route::get('/assignment/guards-to-wards', [
+        GuardWardController::class,
+        'index'
+    ])->name('assignment.guards-wards.index');
 });
 
 require __DIR__ . '/auth.php';

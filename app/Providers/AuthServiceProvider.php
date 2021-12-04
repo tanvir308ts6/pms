@@ -46,5 +46,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-jails', function (User $user) {
             return $user->role->name === 'director';
         });
+
+        //assignment of prisoners to cell and guards to wards
+        Gate::define('manage-assignment', function (User $user) {
+            return $user->role->name === 'director';
+        });
     }
 }

@@ -115,6 +115,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function jails(): BelongsToMany
     {
         return $this->belongsToMany(Jail::class)
+            ->wherePivot('state', true)
             ->withTimestamps();
     }
 }

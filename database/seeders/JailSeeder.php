@@ -27,7 +27,7 @@ class JailSeeder extends Seeder
         $prisoners = $prisoner_role->users;
         $jails = Jail::all();
         $jails->each(function ($jail) use ($prisoners) {
-            $jail->users()->attach($prisoners->shift(rand(4, 8)));
+            $jail->users()->attach($prisoners->shift($jail->capacity));
         });
     }
 }
