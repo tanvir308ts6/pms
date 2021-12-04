@@ -48,7 +48,7 @@ class PrisonerJailController extends Controller
         $validated = $request->validated();
         $prisoner = $user;
 
-        if ($this->verifyItIsTheSameJail($prisoner, $validated['jail'])) {
+        if ($this->verifyItIsTheSameJail($prisoner->jails->first(), $validated['jail'])) {
             return back()->with([
                 'status' => 'The prisoner is already in that jail.',
                 'color' => 'yellow'
@@ -65,8 +65,8 @@ class PrisonerJailController extends Controller
         return back()->with('status', 'Assignment updated successfully');
     }
 
-    private function verifyItIsTheSameJail(User $prisoner, string $jail_id): bool
+    private function verifyItIsTheSameJail(Jail|null $jail, string $jail_id): bool
     {
-        return $prisoner->jails->first()->id === (int)$jail_id;
+        return !is_null($jail) && $jail->id === (int)$jail_id;
     }
 }

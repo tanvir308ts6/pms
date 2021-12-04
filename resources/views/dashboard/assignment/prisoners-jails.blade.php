@@ -49,7 +49,7 @@
                         </x-table.td>
 
                         <x-table.td>
-                            {{ $prisoner->jails->first()->name }}
+                            {{ $prisoner->jails->first()->name ?? "N/A" }}
                         </x-table.td>
 
 
