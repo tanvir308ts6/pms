@@ -53,25 +53,27 @@
                         </x-table.td>
 
 
+                        @if($prisoner->state)
                         <!--Form-->
-                        <x-table.td>
-                            <form method="POST" class="flex space-x-3"
-                                  action="{{ route('assignment.prisoners-jails.update', ['user' => $prisoner->id]) }}"
-                                  x-ref="prisoner-jail-update">
-                                @method('PUT')
-                                @csrf
+                            <x-table.td>
+                                <form method="POST" class="flex space-x-3"
+                                      action="{{ route('assignment.prisoners-jails.update', ['user' => $prisoner->id]) }}"
+                                      x-ref="prisoner-jail-update">
+                                    @method('PUT')
+                                    @csrf
 
-                                <x-select name="jail" id="jail" required>
-                                    <option value="">{{ __('Change jail') }}</option>
-                                    @foreach($jails as $jail)
-                                        <option value="{{ $jail->id }}">
-                                            {{ $jail->name }}
-                                        </option>
-                                    @endforeach
-                                </x-select>
-                                <x-button class="min-w-max">{{ __('Assign') }}</x-button>
-                            </form>
-                        </x-table.td>
+                                    <x-select name="jail" id="jail" required>
+                                        <option value="">{{ __('Change jail') }}</option>
+                                        @foreach($jails as $jail)
+                                            <option value="{{ $jail->id }}">
+                                                {{ $jail->name }}
+                                            </option>
+                                        @endforeach
+                                    </x-select>
+                                    <x-button class="min-w-max">{{ __('Assign') }}</x-button>
+                                </form>
+                            </x-table.td>
+                        @endif
 
                     </tr>
                 @endforeach

@@ -119,9 +119,20 @@ class PrisonerController extends Controller
         $state = $prisoner->state;
         $message = $state ? 'inactivated' : 'activated';
 
+        if ($state) {
+            $this->disableAllPrisonerRelationshipsWithJails($prisoner);
+        }
+
         $prisoner->state = !$state;
         $prisoner->save();
 
         return back()->with('status', "Prisoner $message successfully");
+    }
+
+    private function disableAllPrisonerRelationshipsWithJails(User $prisoner): void
+    {
+        //All jail relationships are deactivated.
+        $prisoner_jails_id = $prisoner->jails->modelKeys();
+        $prisoner->jails()->syncWithPivotValues($prisoner_jails_id, ['state' => false]);
     }
 }
