@@ -34,7 +34,8 @@ class PrisonerJailController extends Controller
             ->orderBy('last_name', 'asc')
             ->paginate();
 
-        $jails = Jail::cursor()->filter(function ($jail) {
+        $jails = Jail::orderBy('name', 'asc')
+            ->cursor()->filter(function ($jail) {
             return $jail->capacity > $jail->users->count() && $jail->state;
         });
 

@@ -83,7 +83,7 @@ class WardController extends Controller
 
         if ($this->verifyWardHasAssignedGuards($ward)) {
             return back()->with([
-                'status' => "The ward $ward->name has assigned guards.",
+                'status' => "The ward $ward->name has assigned guard(s).",
                 'color' => 'yellow'
             ]);
         }

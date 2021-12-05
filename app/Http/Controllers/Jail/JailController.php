@@ -34,7 +34,7 @@ class JailController extends Controller
 
     public function create(): View
     {
-        $wards = Ward::all();
+        $wards = Ward::where('state', true)->get();
         return view('dashboard.jail.create', [
             'wards' => $wards
         ]);
@@ -66,7 +66,7 @@ class JailController extends Controller
 
     public function edit(Jail $jail): View
     {
-        $wards = Ward::all();
+        $wards = Ward::where('state', true)->get();
         return view('dashboard.jail.update', [
             'jail' => $jail,
             'wards' => $wards,
@@ -93,9 +93,21 @@ class JailController extends Controller
         $state = $jail->state;
         $message = $state ? 'inactivated' : 'activated';
 
+        if ($this->verifyJailHasAssignedPrisoners($jail)) {
+            return back()->with([
+                'status' => "The jail $jail->name has assigned prisoner(s).",
+                'color' => 'yellow'
+            ]);
+        }
+
         $jail->state = !$state;
         $jail->save();
 
         return back()->with('status', "Jail $message successfully");
+    }
+
+    private function verifyJailHasAssignedPrisoners(Jail $jail): bool
+    {
+        return (bool)$jail->users->count();
     }
 }

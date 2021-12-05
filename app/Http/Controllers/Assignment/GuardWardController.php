@@ -36,7 +36,8 @@ class GuardWardController extends Controller
             ->orderBy('last_name', 'asc')
             ->paginate();
 
-        $wards = Ward::cursor()->filter(function ($ward) {
+        $wards = Ward::orderBy('name', 'asc')
+            ->cursor()->filter(function ($ward) {
             return $this->allowed_number_of_guards_per_ward > $ward->users->count() && $ward->state;
         });
 
