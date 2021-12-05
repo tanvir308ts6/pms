@@ -81,9 +81,21 @@ class WardController extends Controller
         $state = $ward->state;
         $message = $state ? 'inactivated' : 'activated';
 
+        if ($this->verifyWardHasAssignedGuards($ward)) {
+            return back()->with([
+                'status' => "The ward $ward->name has assigned guards.",
+                'color' => 'yellow'
+            ]);
+        }
+
         $ward->state = !$state;
         $ward->save();
 
         return back()->with('status', "Ward $message successfully");
+    }
+
+    private function verifyWardHasAssignedGuards(Ward $ward): bool
+    {
+        return (bool)$ward->users->count();
     }
 }
