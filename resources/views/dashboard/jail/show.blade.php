@@ -76,12 +76,11 @@
                     <div class="col-span-6 sm:col-span-3">
                         <x-label for="description" :value="__('Description')"/>
 
-                        <x-input id="description"
-                                 class="block mt-2 w-full"
-                                 type="text"
-                                 name="description"
-                                 :value="$jail->description"
-                                 disabled/>
+                        <x-text-area id="description"
+                                     class="block mt-2 w-full"
+                                     rows="6"
+                                     name="description"
+                                     disabled>{{ $jail->description }}</x-text-area>
                     </div>
 
                     <!--Actions-->

@@ -105,13 +105,13 @@
                             <span class="text-sm ml-2 text-gray-400"> ({{ __('Optional') }})</span>
                         </x-label>
 
-                        <x-input id="description"
-                                 class="block mt-2 w-full"
-                                 type="text"
-                                 name="description"
-                                 :value="old('description') ?? $jail->description"
-                                 placeholder="Enter the description"
-                                 maxlength="255"/>
+
+                        <x-text-area id="description"
+                                     name="description"
+                                     class="block mt-2 w-full"
+                                     rows="6"
+                                     placeholder="Enter the description"
+                                     maxlength="255">{{ old('description') ?? $jail->description }}</x-text-area>
 
                         <x-input-error for="description" class="mt-2"/>
                     </div>

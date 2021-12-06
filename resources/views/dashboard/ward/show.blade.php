@@ -40,12 +40,11 @@
                     <div class="col-span-6">
                         <x-label for="description" :value="__('Description')"/>
 
-                        <x-input id="description"
-                                 class="block mt-2 w-full"
-                                 type="text"
-                                 name="description"
-                                 :value="$ward->description"
-                                 disabled/>
+                        <x-text-area id="description"
+                                     class="block mt-2 w-full"
+                                     rows="6"
+                                     name="description"
+                                     disabled>{{ $ward->description }}</x-text-area>
                     </div>
 
                     <!--Actions-->
