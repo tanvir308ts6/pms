@@ -23,7 +23,7 @@ trait HasImage
     public function storeImage(UploadedFile $new_image, string $directory = 'images'): void
     {
         $image = new Image([
-            'path' => $new_image->store($directory),
+            'path' => $new_image->store($directory, 'dropbox'),
         ]);
 
         $this->image()->save($image);
@@ -36,10 +36,10 @@ trait HasImage
         if ($previous_image) {
             $previous_image_path = $previous_image->path;
 
-            $previous_image->path = $new_image->store($directory);
+            $previous_image->path = $new_image->store($directory, 'dropbox');
             $previous_image->save();
 
-            Storage::delete($previous_image_path);
+            Storage::disk('dropbox')->delete($previous_image_path);
         } else {
             $this->storeImage($new_image, $directory);
         }
