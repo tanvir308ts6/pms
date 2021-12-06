@@ -158,7 +158,7 @@
 
                     <div class="flex items-center space-x-4">
                         <!--Notifications-->
-                        <x-dropdown.menu.option>
+                        <!--<x-dropdown.menu.option>
                             <x-slot name="header">
                                 <x-icons.notification/>
                             </x-slot>
@@ -167,7 +167,7 @@
                                     {{ __('Notifications') }}
                                 </x-dropdown.menu.link>
                             </x-slot>
-                        </x-dropdown.menu.option>
+                        </x-dropdown.menu.option>-->
 
                         <!--User options-->
                         <x-dropdown.menu.option>
