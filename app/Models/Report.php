@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Report extends Model
 {
-    use HasFactory;
+    use HasFactory, HasImage;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,6 @@ class Report extends Model
      * @var array
      */
     protected $fillable = ['title', 'description'];
-
 
     /**
      * Relationships
@@ -27,11 +26,5 @@ class Report extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /*A report can only have one image*/
-    public function image(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable');
     }
 }

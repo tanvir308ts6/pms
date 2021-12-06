@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->id();
 
             /*required columns*/
-            $table->string('title');
+            $table->string('title', 45);
             $table->string('description');
             $table->boolean('state')->default(true);
 

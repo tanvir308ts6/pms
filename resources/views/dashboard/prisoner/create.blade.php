@@ -10,10 +10,10 @@
             </x-slot>
 
             <x-slot name="form">
-                <form method="POST" action="{{ route('prisoner.create') }}" class="grid grid-cols-6 gap-6">
-                @csrf
+                <form method="POST" action="{{ route('prisoner.store') }}" class="grid grid-cols-6 gap-6">
+                    @csrf
 
-                <!--First name-->
+                    <!--First name-->
                     <div class="col-span-6 sm:col-span-3">
                         <x-label for="first_name" :value="__('First name')"/>
 

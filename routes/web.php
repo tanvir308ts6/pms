@@ -6,6 +6,7 @@ use App\Http\Controllers\Jail\JailController;
 use App\Http\Controllers\Profile\PasswordController;
 use App\Http\Controllers\Profile\ProfileAvatarController;
 use App\Http\Controllers\Profile\ProfileInformationController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\User\DirectorController;
 use App\Http\Controllers\User\GuardController;
 use App\Http\Controllers\User\PrisonerController;
@@ -96,6 +97,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         GuardWardController::class,
         'update'
     ])->name('assignment.guards-wards.update');
+
+    //Reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
+    Route::get('/reports/create', [ReportController::class, 'create'])->name('report.create');
+    Route::post('/reports/create', [ReportController::class, 'store'])->name('report.store');
+    Route::get('/reports/{report}', [ReportController::class, 'show'])->name('report.show');
+    Route::get('/reports/update/{report}', [ReportController::class, 'edit'])->name('report.edit');
+    Route::put('/reports/update/{report}', [ReportController::class, 'update'])->name('report.update');
+    Route::get('/reports/destroy/{report}', [ReportController::class, 'destroy'])->name('report.destroy');
 });
 
 require __DIR__ . '/auth.php';

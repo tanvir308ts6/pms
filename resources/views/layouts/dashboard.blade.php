@@ -125,6 +125,23 @@
                         </x-dropdown.simple.option>
                     @endcan
 
+                    @can('viewAny', App\Models\Report::class)
+                        <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('report.*')">
+                            <x-slot name="header">
+                                <x-icons.report/>
+                                <span>{{__("Reports")}}</span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown.simple.link :href="route('report.index')">
+                                    {{ __('List reports') }}
+                                </x-dropdown.simple.link>
+                                <x-dropdown.simple.link :href="route('report.create')">
+                                    {{ __('Create a new report') }}
+                                </x-dropdown.simple.link>
+                            </x-slot>
+                        </x-dropdown.simple.option>
+                    @endcan
+
                 </nav>
             </div>
 
@@ -179,8 +196,6 @@
                 <main class="overflow-x-hidden overflow-y-auto px-6 py-8">
                     <!-- Session Status -->
                     <x-session-status class="mb-4 text-center" :status="session('status')" :color="session('color')"/>
-                    <!-- Validation Errors -->
-                    <x-validation-errors class="mb-4" :errors="$errors" />
 
                     {{ $slot }}
 

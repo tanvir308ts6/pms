@@ -1,4 +1,7 @@
 <x-dashboard-layout>
+    <!-- Validation Errors -->
+    <x-validation-errors class="mb-4" :errors="$errors" />
+
     <div class="bg-white p-6 md:p-8 shadow-md">
         <div class="grid grid-cols-12 gap-3 px-4 sm:px-0">
             <div class="col-span-12 md:col-span-8">

@@ -20,15 +20,29 @@ trait HasImage
         }
     }
 
+    public function storeImage(UploadedFile $new_image, string $directory = 'images'): void
+    {
+        $image = new Image([
+            'path' => $new_image->store($directory),
+        ]);
+
+        $this->image()->save($image);
+    }
+
     public function updateImage(UploadedFile $new_image, string $directory = 'images'): void
     {
         $previous_image = $this->image;
-        $previous_image_path = $previous_image->path;
 
-        $previous_image->path = $new_image->store($directory);
-        $previous_image->save();
+        if ($previous_image) {
+            $previous_image_path = $previous_image->path;
 
-        Storage::delete($previous_image_path);
+            $previous_image->path = $new_image->store($directory);
+            $previous_image->save();
+
+            Storage::delete($previous_image_path);
+        } else {
+            $this->storeImage($new_image, $directory);
+        }
     }
 
 

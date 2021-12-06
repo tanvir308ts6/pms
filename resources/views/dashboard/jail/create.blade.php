@@ -10,8 +10,8 @@
             </x-slot>
 
             <x-slot name="form">
-                <form method="POST" action="{{ route('jail.create') }}" class="grid grid-cols-6 gap-6">
-                @csrf
+                <form method="POST" action="{{ route('jail.store') }}" class="grid grid-cols-6 gap-6">
+                    @csrf
 
                     <!--Name-->
                     <div class="col-span-6 sm:col-span-3">

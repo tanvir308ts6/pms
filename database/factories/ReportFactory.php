@@ -22,7 +22,7 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
+            'title' => $this->faker->text(45),
             'description' => $this->faker->text(255),
         ];
     }
