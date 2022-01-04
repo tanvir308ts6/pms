@@ -24,21 +24,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Public routes*/
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+/*Protected routes*/
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.home');
     })->name('dashboard');
 
+    /*Profile*/
     Route::get('/profile', [ProfileInformationController::class, 'edit'])->name('profile');
     Route::put('/profile', [ProfileInformationController::class, 'update'])->name('profile.update');
     Route::put('/password', [PasswordController::class, 'update'])->name('user-password.update');
     Route::put('/user-avatar', [ProfileAvatarController::class, 'update'])->name('user-avatar.update');
 
-    /*The admin user can perform the following actions*/
+    /*Admin -> Management of directors*/
     Route::get('/directors', [DirectorController::class, 'index'])->name('director.index');
     Route::get('/directors/create', [DirectorController::class, 'create'])->name('director.create');
     Route::post('/directors/create', [DirectorController::class, 'store'])->name('director.store');
@@ -48,6 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/directors/destroy/{user}', [DirectorController::class, 'destroy'])->name('director.destroy');
     Route::get('/search/directors', [DirectorController::class, 'search'])->name('director.search');
 
+    /*Admin -> Management of guards*/
     Route::get('/guards', [GuardController::class, 'index'])->name('guard.index');
     Route::get('/guards/create', [GuardController::class, 'create'])->name('guard.create');
     Route::post('/guards/create', [GuardController::class, 'store'])->name('guard.store');
@@ -56,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/guards/update/{user}', [GuardController::class, 'update'])->name('guard.update');
     Route::get('/guards/destroy/{user}', [GuardController::class, 'destroy'])->name('guard.destroy');
 
+    /*Admin -> Management of prisoners*/
     Route::get('/prisoners', [PrisonerController::class, 'index'])->name('prisoner.index');
     Route::get('/prisoners/create', [PrisonerController::class, 'create'])->name('prisoner.create');
     Route::post('/prisoners/create', [PrisonerController::class, 'store'])->name('prisoner.store');
@@ -64,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/prisoners/update/{user}', [PrisonerController::class, 'update'])->name('prisoner.update');
     Route::get('/prisoners/destroy/{user}', [PrisonerController::class, 'destroy'])->name('prisoner.destroy');
 
+    /*Director -> Management of wards*/
     Route::get('/wards', [WardController::class, 'index'])->name('ward.index');
     Route::get('/wards/create', [WardController::class, 'create'])->name('ward.create');
     Route::post('/wards/create', [WardController::class, 'store'])->name('ward.store');
@@ -72,6 +78,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/wards/update/{ward}', [WardController::class, 'update'])->name('ward.update');
     Route::get('/wards/destroy/{ward}', [WardController::class, 'destroy'])->name('ward.destroy');
 
+    /*Director -> Management of jails*/
     Route::get('/jails', [JailController::class, 'index'])->name('jail.index');
     Route::get('/jails/create', [JailController::class, 'create'])->name('jail.create');
     Route::post('/jails/create', [JailController::class, 'store'])->name('jail.store');
@@ -80,7 +87,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/jails/update/{jail}', [JailController::class, 'update'])->name('jail.update');
     Route::get('/jails/destroy/{jail}', [JailController::class, 'destroy'])->name('jail.destroy');
 
-    //Assignments
+    /*Director -> Management of assignments*/
     Route::get('/assignment/prisoners-to-jails', [
         PrisonerJailController::class,
         'index'
@@ -98,7 +105,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'update'
     ])->name('assignment.guards-wards.update');
 
-    //Reports
+    /*Director -> Management of reports*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('/reports/create', [ReportController::class, 'create'])->name('report.create');
     Route::post('/reports/create', [ReportController::class, 'store'])->name('report.store');
@@ -108,4 +115,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reports/destroy/{report}', [ReportController::class, 'destroy'])->name('report.destroy');
 });
 
+/*Authentication routes*/
 require __DIR__ . '/auth.php';
