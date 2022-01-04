@@ -12,12 +12,7 @@ use Illuminate\Http\Request;
 
 class EmailVerificationPromptController extends Controller
 {
-    /**
-     * Display the email verification prompt.
-     *
-     * @param Request $request
-     * @return Application|Factory|View|RedirectResponse
-     */
+    /* Display the email verification prompt */
     public function __invoke(Request $request): Factory|View|Application|RedirectResponse
     {
         return $request->user()->hasVerifiedEmail()
