@@ -57,11 +57,11 @@ class PrisonerJailController extends Controller
             ]);
         }
 
-        //All jail relationships are deactivated.
+        //First, all user's jail relations are deactivated
         $prisoner_jails_id = $prisoner->jails->modelKeys();
         $prisoner->jails()->syncWithPivotValues($prisoner_jails_id, ['state' => false]);
 
-        //A new user and jail relationship is created.
+        //Second, a new assigment is saved between user and jail
         $prisoner->jails()->sync($validated['jail']);
 
         return back()->with('status', 'Assignment updated successfully');

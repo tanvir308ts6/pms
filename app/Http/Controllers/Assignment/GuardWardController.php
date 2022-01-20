@@ -59,11 +59,11 @@ class GuardWardController extends Controller
             ]);
         }
 
-        //All ward relationships are deactivated.
+        //First, all user's ward relations are deactivated
         $guard_wards_id = $guard->wards->modelKeys();
         $guard->wards()->syncWithPivotValues($guard_wards_id, ['state' => false]);
 
-        //A new user and ward relationship is created.
+        //Second, a new assigment is saved between user and jail
         $guard->wards()->sync($validated['ward']);
 
         return back()->with('status', 'Assignment updated successfully');
