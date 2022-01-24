@@ -14,7 +14,7 @@ trait HasImage
     {
         $user_image = $this->image;
         $image_path = $user_image->path;
-        if (Str::startsWith($image_path, 'https://')) {
+        if (Str::startsWith($image_path, 'https://ui-avatars.com')) {
             $user_image->path = $avatar_url;
             $user_image->save();
         }
