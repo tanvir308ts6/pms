@@ -20,11 +20,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     private string $ui_avatar_api = "https://ui-avatars.com/api/?name=*+*&size=128";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'first_name',
         'last_name',
