@@ -15,6 +15,9 @@ class UserController extends Controller
         return new UserResource($request->user());
     }
 
+     /**
+      * Returns all users
+      */
     public function list_users(): AnonymousResourceCollection
     {
         $users = User::where('state', true)->get();

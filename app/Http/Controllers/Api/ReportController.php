@@ -9,6 +9,9 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ReportController extends Controller
 {
+    /**
+     * Returns report list
+     */
     public function list_reports(): AnonymousResourceCollection
     {
         $reports = Report::where('state', true)->get();

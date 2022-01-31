@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    /**
+     * API login
+     */
     public function login(LoginRequest $request): Response
     {
         $validated = $request->validated();
@@ -22,6 +25,7 @@ class AuthController extends Controller
             && $request->verifyUserState($user)
             && $request->verifyUserPassword($user, $validated['password'])
         ) {
+            //Bearer authentication - token
             $token = $user->createToken('token-name')->plainTextToken;
 
             return response([
