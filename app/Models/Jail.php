@@ -13,7 +13,6 @@ class Jail extends Model
 
     protected $fillable = ['name', 'code', 'type', 'capacity', 'description'];
 
-
     /**
      * Relationships
      *

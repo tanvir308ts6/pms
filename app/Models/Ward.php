@@ -13,7 +13,6 @@ class Ward extends Model
 
     protected $fillable = ['name', 'location', 'description'];
 
-
     /**
      * Relationships
      *
