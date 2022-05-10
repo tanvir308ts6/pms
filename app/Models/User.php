@@ -51,9 +51,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return isset($value) ? Carbon::parse($value)->format('d/m/Y') : null;
     }
 
-    /**
-     * Methods
-     */
     public function getFullName(): string
     {
         return "$this->first_name $this->last_name";
