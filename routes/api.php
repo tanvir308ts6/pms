@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/reports', [ReportController::class, 'list_reports']);
 
-/*Protected routes*/
+/*Protected routes - improve authentication with token*/
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [UserController::class, 'me']);
     Route::get('/users', [UserController::class, 'list_users']);
