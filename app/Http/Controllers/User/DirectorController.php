@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
+#TODO: Handle users in a single controller 
 class DirectorController extends Controller
 {
     public function __construct()
