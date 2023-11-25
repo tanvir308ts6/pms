@@ -1,2 +1,2 @@
 # prison-system
-Laravel - Prison management system
+Laravel 9 - Prison management system
