@@ -11,6 +11,7 @@ use App\Http\Controllers\User\DirectorController;
 use App\Http\Controllers\User\GuardController;
 use App\Http\Controllers\User\PrisonerController;
 use App\Http\Controllers\Ward\WardController;
+use App\Http\Controllers\applications\ApplicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -113,7 +114,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/reports/update/{report}', [ReportController::class, 'edit'])->name('report.edit');
     Route::put('/reports/update/{report}', [ReportController::class, 'update'])->name('report.update');
     Route::get('/reports/destroy/{report}', [ReportController::class, 'destroy'])->name('report.destroy');
+    
 });
+
+Route::get('/application', [ApplicationController::class, 'create'])->name('application.create');
+Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
 
 /*Authentication routes*/
 require __DIR__ . '/auth.php';

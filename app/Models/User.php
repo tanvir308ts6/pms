@@ -16,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasImage, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable, HasImage;
 
     private string $ui_avatar_api = "https://ui-avatars.com/api/?name=*+*&size=128";
 

@@ -17,7 +17,7 @@
                     <x-icons.shield class="w-8 max-h-full h-14 text-gray-500"/>
                     <span class="text-gray-800 text-2xl font-bold uppercase tracking-wide text-center">
                         {{ Auth::user()->role->name }}
-                    </span>
+                    </span> 
                 </a>
 
                 <!--Sidebar options-->
@@ -56,6 +56,7 @@
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endcan
+
 
                     @can('manage-prisoners')
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('prisoner.*')">
@@ -125,6 +126,23 @@
                         </x-dropdown.simple.option>
                     @endcan
 
+                    @if(Auth::user()->role->id == 2)
+                    <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('director.*')">
+                            <x-slot name="header">
+                                <x-icons.director/>
+                                <span>{{__("Applications")}}</span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown.simple.link :href="route('assignment.prisoners-jails.index')">
+                                    {{ __('Application List') }}
+                                </x-dropdown.simple.link>
+                                <!-- <x-dropdown.simple.link :href="route('director.create')">
+                                    {{ __('Create a new director') }}
+                                </x-dropdown.simple.link> -->
+                            </x-slot>
+                        </x-dropdown.simple.option>
+                    @endif
+
                     @can('viewAny', App\Models\Report::class)
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('report.*')">
                             <x-slot name="header">
@@ -141,6 +159,10 @@
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endcan
+
+                    
+
+                    
 
                 </nav>
             </div>
