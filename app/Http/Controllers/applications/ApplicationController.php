@@ -7,6 +7,9 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Notifications\ApplicantNotification;
 use App\Models\Role;
+use App\Models\User;
+use App\Models\Jail;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationController extends Controller
 {
@@ -17,7 +20,10 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        
+        $applications = Application::paginate(2);
+        return view('application.index', [
+            'applications' => $applications
+        ]);
     }
 
     /**
@@ -27,7 +33,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        return view('application/index');
+        return view('application.create');
     }
 
     /**
@@ -55,13 +61,7 @@ class ApplicationController extends Controller
 
         Application::create($applicant);
 
-        // $applicant->notify(
-        //     new ApplicantNotification(
-        //         $applicant->full_name,
-        //         $role->name,
-        //     )
-        // );
-
+        
         return redirect()->back()->with('success', 'Visit application submitted successfully.');
     }
 
@@ -73,7 +73,20 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-        //
+        $application  = Application::find($id);
+        $pin_data = User::find($application->pin_no);
+        $pjd_id= $application->pin_no;
+        $pjd = DB::table('jail_user')->where('user_id', (string)$pjd_id)->get();
+        $jd = DB::table('jails')->where('id', $pjd[0]->jail_id)->get();
+        
+        if(!$application){
+            abort(404, 'Application not found');
+        }
+        return view('application.review', [
+            'application' => $application,
+            'pin_data' => $pin_data,
+            'jd' => $jd
+        ]);
     }
 
     /**

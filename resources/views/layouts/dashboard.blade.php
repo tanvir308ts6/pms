@@ -126,14 +126,14 @@
                         </x-dropdown.simple.option>
                     @endcan
 
-                    @if(Auth::user()->role->id == 2)
-                    <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('director.*')">
+                    @if(Auth::user()?->role?->id == 2 || Auth::user()?->role?->id == 1)
+                        <x-dropdown.simple.option class="w-full">
                             <x-slot name="header">
                                 <x-icons.director/>
                                 <span>{{__("Applications")}}</span>
                             </x-slot>
                             <x-slot name="content">
-                                <x-dropdown.simple.link :href="route('assignment.prisoners-jails.index')">
+                                <x-dropdown.simple.link :href="url('/application-list')">
                                     {{ __('Application List') }}
                                 </x-dropdown.simple.link>
                                 <!-- <x-dropdown.simple.link :href="route('director.create')">

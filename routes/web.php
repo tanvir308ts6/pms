@@ -106,6 +106,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'update'
     ])->name('assignment.guards-wards.update');
 
+    // application
+    Route::get('/application-list', [ApplicationController::class, 'index'])->name('application.index');
+    Route::get('/application/{id}', [ApplicationController::class, 'show'])->name('application.show');
+    Route::put('/application/{id}', [ApplicationController::class, 'update'])->name('application.update');
+
     /*Director -> Management of reports*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('/reports/create', [ReportController::class, 'create'])->name('report.create');
