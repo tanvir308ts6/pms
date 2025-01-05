@@ -143,6 +143,23 @@
                         </x-dropdown.simple.option>
                     @endif
 
+                    @if(Auth::user()?->role?->id == 3)
+                        <x-dropdown.simple.option class="w-full">
+                            <x-slot name="header">
+                                <x-icons.director/>
+                                <span>{{__("Visitors")}}</span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown.simple.link :href="url('/visitor-list')">
+                                    {{ __('Visitors List') }}
+                                </x-dropdown.simple.link>
+                                <!-- <x-dropdown.simple.link :href="route('director.create')">
+                                    {{ __('Create a new director') }}
+                                </x-dropdown.simple.link> -->
+                            </x-slot>
+                        </x-dropdown.simple.option>
+                    @endif
+
                     @can('viewAny', App\Models\Report::class)
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('report.*')">
                             <x-slot name="header">
@@ -159,6 +176,22 @@
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endcan
+
+
+                    <x-dropdown.simple.option class="w-full">
+                            <x-slot name="header">
+                                <x-bx-task class="h-6 w-6 text-red-600" style="color:gray;"/>
+                                <span>{{__("Task")}}</span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown.simple.link :href="url('/visitor-list')">
+                                    {{ __('Task List') }}
+                                </x-dropdown.simple.link>
+                                <!-- <x-dropdown.simple.link :href="route('director.create')">
+                                    {{ __('Create a new director') }}
+                                </x-dropdown.simple.link> -->
+                            </x-slot>
+                        </x-dropdown.simple.option>
 
                     
 

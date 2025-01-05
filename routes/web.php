@@ -12,6 +12,7 @@ use App\Http\Controllers\User\GuardController;
 use App\Http\Controllers\User\PrisonerController;
 use App\Http\Controllers\Ward\WardController;
 use App\Http\Controllers\applications\ApplicationController;
+use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -109,8 +110,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // application
     Route::get('/application-list', [ApplicationController::class, 'index'])->name('application.index');
     Route::get('/application/{id}', [ApplicationController::class, 'show'])->name('application.show');
-    Route::put('/application/{id}', [ApplicationController::class, 'update'])->name('application.update');
+    Route::post('/application/{id}', [ApplicationController::class, 'update'])->name('application.update');
 
+    Route::get('/visitor-list', [ApplicationController::class, 'index'])->name('visitor.index');
+    Route::get('/visitor/{id}', [ApplicationController::class, 'show'])->name('visitor.show');
+
+     // application
+     Route::get('/task-list', [TaskController::class, 'index'])->name('task.index');
+     Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
+     Route::post('/task/{id}', [TaskController::class, 'update'])->name('task.update');
+    
     /*Director -> Management of reports*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('/reports/create', [ReportController::class, 'create'])->name('report.create');

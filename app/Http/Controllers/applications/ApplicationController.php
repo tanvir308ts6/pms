@@ -18,9 +18,15 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $applications = Application::paginate(2);
+        $search = $request->input('search');
+        
+        $applications = Application::when($search, function ($query, $search) {
+            $query->where('email', 'like', "%{$search}%")
+                  ->orWhere('phone_number', 'like', "%{$search}%");
+        })->paginate(10);
+
         return view('application.index', [
             'applications' => $applications
         ]);
@@ -109,7 +115,15 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required|in:0,1', // Validate the status to be either 0 or 1
+        ]);
+    
+        $application = Application::findOrFail($id); // Fetch the application by ID
+        $application->status = $request->status; // Update the status
+        $application->save(); // Save the changes
+    
+        return redirect()->back()->with('success', 'Application status updated successfully.');
     }
 
     /**

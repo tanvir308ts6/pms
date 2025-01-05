@@ -3,10 +3,19 @@
         <div class="grid grid-cols-12 gap-3 px-4 sm:px-0">
             <div class="col-span-12 md:col-span-8">
                 <h3 class="text-lg font-medium text-gray-900">
+                    @if(Auth::user()?->role?->id == 3)
+                    {{ __("List of Visitors") }}
+                    @else
                     {{ __("List of Applications") }}
+                    @endif
                 </h3>
                 <p class="mt-1 text-sm text-gray-600">
+                @if(Auth::user()?->role?->id == 3)
+                {{ __("List of Visitors with the role of Visitor and who have been applyed to visit through the system.") }}
+                    @else
                     {{ __("List of application with the role of Visitor and who have been applyed to visit through the system.") }}
+                    @endif
+                    
                 </p>
             </div>
 
@@ -24,10 +33,8 @@
                     <x-table.th>{{ __("Email") }}</x-table.th>
                     <x-table.th>{{ __("Phone") }}</x-table.th>
                     <x-table.th>{{ __("NID/BC No") }}</x-table.th>
-                    <x-table.th>{{ __("Gender") }}</x-table.th>
-                    <x-table.th>{{ __("PIN No") }}</x-table.th>
+
                     <x-table.th>{{ __("Relation") }}</x-table.th>
-                    <x-table.th>{{ __("State") }}</x-table.th>
                     <x-table.th>{{ __("Actions") }}</x-table.th>
                 </tr>
             </x-slot>
@@ -48,7 +55,7 @@
                     </x-table.td>
 
                     <x-table.td>
-                        {{ $application->phone }}
+                        {{ $application->phone_number }}
                     </x-table.td>
 
                     <x-table.td>
@@ -56,28 +63,23 @@
                     </x-table.td>
 
                     <x-table.td>
-                        {{ $application->gender }}
-                    </x-table.td>
-
-                    <x-table.td>
-                        {{ $application->pin_no }}
-                    </x-table.td>
-
-                    <x-table.td>
                         {{ $application->relation }}
                     </x-table.td>
 
-                    <x-table.td>
-                        <x-badge :color="$application->state === 1 ? 'green' : 'red'">
-                            {{ $application->state === 1 ? 'approved' : ($application->state === 0 ? 'rejected' : 'pending') }}
-                        </x-badge>
-                    </x-table.td>
 
                     <x-table.td class="space-x-3 whitespace-nowrap">
-                    <x-link color="gray" class="inline-flex"
-                                    href="{{ route('application.show', ['id' => $application->id]) }}">
-                                <x-icons.show/>
-                            </x-link>
+                        @if(Auth::user()?->role?->id == 3)
+                        <x-link color="gray" class="inline-flex"
+                            href="{{ route('visitor.show', ['id' => $application->id]) }}">
+                            Print Pass
+                        </x-link>
+
+                        @else
+                        <x-link color="gray" class="inline-flex"
+                            href="{{ route('application.show', ['id' => $application->id]) }}">
+                            <x-icons.show />
+                        </x-link>
+                        @endif
                     </x-table.td>
 
                 </tr>

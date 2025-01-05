@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'e367c00a40980375bb6b64e02768886795b50505',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'ff685be07763a819fb64f20401caea7917010c25',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -16,6 +16,24 @@
             'reference' => '50f57105bad3d97a43ec4a485eb57daf347eafea',
             'type' => 'library',
             'install_path' => __DIR__ . '/../asm89/stack-cors',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'bacon/bacon-qr-code' => array(
+            'pretty_version' => '2.0.8',
+            'version' => '2.0.8.0',
+            'reference' => '8674e51bb65af933a5ffaf1c308a660387c35c22',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bacon/bacon-qr-code',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'blade-ui-kit/blade-icons' => array(
+            'pretty_version' => '1.7.2',
+            'version' => '1.7.2.0',
+            'reference' => '75a54a3f5a2810fcf6574ab23e91b6cc229a1b53',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../blade-ui-kit/blade-icons',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -42,6 +60,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'dasprid/enum' => array(
+            'pretty_version' => '1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => '8dfd07c6d2cf31c8da90c53b83c026c7696dda90',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../dasprid/enum',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'davedevelopment/hamcrest-php' => array(
             'dev_requirement' => true,
@@ -129,6 +156,15 @@
             'install_path' => __DIR__ . '/../facade/ignition-contracts',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'faisal50x/blade-ionicons' => array(
+            'pretty_version' => 'v0.0.3',
+            'version' => '0.0.3.0',
+            'reference' => 'f22a38797496efe0240664e05e1f2490576e5a21',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../faisal50x/blade-ionicons',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.24.1',
@@ -397,6 +433,12 @@
                 0 => 'v8.83.29',
             ),
         ),
+        'jfvoliveira/blade-boxicons' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.1.2',
+            ),
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -422,9 +464,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'e367c00a40980375bb6b64e02768886795b50505',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ff685be07763a819fb64f20401caea7917010c25',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -499,6 +541,15 @@
             'reference' => '2d6702ff215bf922936ccc1ad31007edc76451b9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'mallardduck/blade-boxicons' => array(
+            'pretty_version' => '2.4.0',
+            'version' => '2.4.0.0',
+            'reference' => 'de0d53e6bd08bc21973487e84681b71e2f00b889',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mallardduck/blade-boxicons',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -772,8 +823,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -976,6 +1027,15 @@
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'simplesoftwareio/simple-qrcode' => array(
+            'pretty_version' => '4.2.0',
+            'version' => '4.2.0.0',
+            'reference' => '916db7948ca6772d54bb617259c768c9cdc8d537',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../simplesoftwareio/simple-qrcode',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'spatie/dropbox-api' => array(
             'pretty_version' => '1.22.0',
