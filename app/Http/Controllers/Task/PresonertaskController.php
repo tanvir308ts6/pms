@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Task;
+use App\Models\Presonertask;
 
-class TaskController extends Controller
+class PresonertaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('task.index', compact('tasks'));
+        $tasks = Presonertask::all();
+        return view('presonertasks.index', compact('tasks'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('task.create');
+        //
     }
 
     /**
@@ -36,15 +35,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): RedirectResponse
-    {   
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'status' => 'required',
-        ]);
-
-        Task::create($validated);
-        return back()->with('status', 'Task created successfully');
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -55,8 +48,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::find($id);
-        return view('task.edit', compact('task'));
+        //
     }
 
     /**
@@ -77,22 +69,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
-        // Validate the incoming request
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'status' => 'required',
-        ]);
-
-        // Find the task by its ID
-        $task = Task::findOrFail($id);
-
-        // Update the task with validated data
-        $task->update($validated);
-
-        // Redirect to the task index with a success message
-        return back()->with('status', 'Task Updated successfully');
+        //
     }
 
     /**

@@ -122,6 +122,9 @@
                                 <x-dropdown.simple.link :href="route('assignment.guards-wards.index')">
                                     {{ __('Guards to wards') }}
                                 </x-dropdown.simple.link>
+                                <x-dropdown.simple.link :href="route('assignment.presonertask.index')">
+                                    {{ __('Task to prisoners') }}
+                                </x-dropdown.simple.link>
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endcan
@@ -136,9 +139,6 @@
                                 <x-dropdown.simple.link :href="url('/application-list')">
                                     {{ __('Application List') }}
                                 </x-dropdown.simple.link>
-                                <!-- <x-dropdown.simple.link :href="route('director.create')">
-                                    {{ __('Create a new director') }}
-                                </x-dropdown.simple.link> -->
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endif
@@ -153,9 +153,6 @@
                                 <x-dropdown.simple.link :href="url('/visitor-list')">
                                     {{ __('Visitors List') }}
                                 </x-dropdown.simple.link>
-                                <!-- <x-dropdown.simple.link :href="route('director.create')">
-                                    {{ __('Create a new director') }}
-                                </x-dropdown.simple.link> -->
                             </x-slot>
                         </x-dropdown.simple.option>
                     @endif
@@ -184,12 +181,14 @@
                                 <span>{{__("Task")}}</span>
                             </x-slot>
                             <x-slot name="content">
-                                <x-dropdown.simple.link :href="url('/visitor-list')">
+                                <x-dropdown.simple.link :href="url('/task-list')">
                                     {{ __('Task List') }}
                                 </x-dropdown.simple.link>
-                                <!-- <x-dropdown.simple.link :href="route('director.create')">
-                                    {{ __('Create a new director') }}
-                                </x-dropdown.simple.link> -->
+
+                                <x-dropdown.simple.link :href="url('/create-task')">
+                                    {{ __('Create Task') }}
+                                </x-dropdown.simple.link>
+                               
                             </x-slot>
                         </x-dropdown.simple.option>
 

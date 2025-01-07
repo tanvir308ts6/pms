@@ -13,6 +13,7 @@ use App\Http\Controllers\User\PrisonerController;
 use App\Http\Controllers\Ward\WardController;
 use App\Http\Controllers\applications\ApplicationController;
 use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Task\PresonertaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,8 +118,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
      // application
      Route::get('/task-list', [TaskController::class, 'index'])->name('task.index');
+     Route::get('/create-task', [TaskController::class, 'create'])->name('task.create');
+     Route::post('/task', [TaskController::class, 'store'])->name('task.store');
      Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
      Route::post('/task/{id}', [TaskController::class, 'update'])->name('task.update');
+
+     // presonar-task
+     Route::get('/assignment/presoner-task-list', [PresonertaskController::class, 'index'])->name('assignment.presonertask.index');
+     Route::get('/assignment/presoner-assign-task', [PresonertaskController::class, 'create'])->name('assignment.presonertask.create');
+     Route::post('/assignment/store-presoner-assign-task', [PresonertaskController::class, 'store'])->name('assignment.presonertask.store');
+     Route::get('/assignment/presoner-task-data/{id}', [PresonertaskController::class, 'show'])->name('assignment.presonertask.show');
+     Route::post('/assignment/presoner-task-data/{id}', [PresonertaskController::class, 'update'])->name('assignment.presonertask.update');
     
     /*Director -> Management of reports*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');

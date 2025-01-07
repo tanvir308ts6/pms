@@ -25,7 +25,8 @@
                 </form>
             </div>
         </div>
-        <x-table.list>
+        
+        <x-.table.list>
             <x-slot name="thead">
                 <tr>
                     <x-table.th>{{ __("Applicant Name") }}</x-table.th>
