@@ -27,7 +27,7 @@ class PresonertaskController extends Controller
         $task_data = collect(); 
         $pin_data = collect(); 
         $ass_data = collect();
-        $role_data = collect();
+      
 
         if ($request->has('date') && $request->filled('date')) {
             $date = $request->input('date');
@@ -43,11 +43,10 @@ class PresonertaskController extends Controller
             // Extract role_ids from assignees (ass_data)
             $role_ids = $ass_data->pluck('role_id')->unique();
             
-            // Fetch roles for the extracted role_ids
-            $role_data = Role::whereIn('id', $role_ids)->get();
+            
         }
 
-        return view('presonertasks.index', compact('tasks', 'task_data', 'pin_data', 'ass_data', 'role_data'));
+        return view('presonertasks.index', compact('tasks', 'task_data', 'pin_data', 'ass_data'));
     }
 
 
@@ -189,8 +188,32 @@ class PresonertaskController extends Controller
 
 
 
-    public function report(){
-        return view('presonertasks.report');
+    public function report(Request $request){
+        // Initialize collections to avoid null errors
+        $tasks = collect(); 
+        $task_data = collect(); 
+        $pin_data = collect(); 
+        $ass_data = collect();
+      
+
+        if ($request->has('date') && $request->filled('date')) {
+            $date = $request->input('date');
+
+            // Fetch tasks for the given date
+            $tasks = Presonertask::whereDate('date', $date)->get();
+
+            // Extract related data
+            $task_data = Task::whereIn('id', $tasks->pluck('task_id'))->get();
+            $pin_data = User::whereIn('id', $tasks->pluck('pin_no'))->get();
+            $ass_data = User::whereIn('id', $tasks->pluck('ass_id'))->get();
+            
+            // Extract role_ids from assignees (ass_data)
+            $role_ids = $ass_data->pluck('role_id')->unique();
+            
+            
+        }
+
+        return view('presonertasks.report', compact('tasks', 'task_data', 'pin_data', 'ass_data'));
     }
 
     /**
