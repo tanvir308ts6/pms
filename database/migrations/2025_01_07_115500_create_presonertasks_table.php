@@ -15,16 +15,17 @@ class CreatePresonertasksTable extends Migration
     {
         Schema::create('presonertasks', function (Blueprint $table) {
             $table->id();
-            $table->integer('task_id');
+            $table->string('task_id');
             $table->string('pin_no');
-            $table->string('task_details');
-            $table->date('task_date');
+            $table->date('date');
             $table->time('start_at');
             $table->time('end_at');
-            $table->string('task_evaluate');
-            $table->string('remarks');
-            $table->string('task_mark');
-            $table->string('status');
+            $table->text('description')->nullable();
+            $table->text('remarks')->nullable();
+            $table->integer('marks')->nullable();
+            $table->string('task_status');
+            $table->string('status')->nullable();
+            $table->string('ass_id');
             $table->timestamps();
         });
     }

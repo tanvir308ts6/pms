@@ -125,11 +125,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
      // presonar-task
      Route::get('/assignment/presoner-task-list', [PresonertaskController::class, 'index'])->name('assignment.presonertask.index');
-     Route::get('/assignment/presoner-assign-task', [PresonertaskController::class, 'create'])->name('assignment.presonertask.create');
+     Route::get('/assignment/presoner-assign-task', [PresonertaskController::class, 'assaignTask'])->name('assignment.presonertask.create');
      Route::post('/assignment/store-presoner-assign-task', [PresonertaskController::class, 'store'])->name('assignment.presonertask.store');
      Route::get('/assignment/presoner-task-data/{id}', [PresonertaskController::class, 'show'])->name('assignment.presonertask.show');
      Route::post('/assignment/presoner-task-data/{id}', [PresonertaskController::class, 'update'])->name('assignment.presonertask.update');
     
+     // presonar-task-report
+
     /*Director -> Management of reports*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('/reports/create', [ReportController::class, 'create'])->name('report.create');

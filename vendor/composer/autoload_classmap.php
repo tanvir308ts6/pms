@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\Profile\\ProfileAvatarController' => $baseDir . '/app/Http/Controllers/Profile/ProfileAvatarController.php',
     'App\\Http\\Controllers\\Profile\\ProfileInformationController' => $baseDir . '/app/Http/Controllers/Profile/ProfileInformationController.php',
     'App\\Http\\Controllers\\Report\\ReportController' => $baseDir . '/app/Http/Controllers/Report/ReportController.php',
+    'App\\Http\\Controllers\\Task\\PresonertaskController' => $baseDir . '/app/Http/Controllers/Task/PresonertaskController.php',
     'App\\Http\\Controllers\\Task\\TaskController' => $baseDir . '/app/Http/Controllers/Task/TaskController.php',
     'App\\Http\\Controllers\\User\\DirectorController' => $baseDir . '/app/Http/Controllers/User/DirectorController.php',
     'App\\Http\\Controllers\\User\\GuardController' => $baseDir . '/app/Http/Controllers/User/GuardController.php',

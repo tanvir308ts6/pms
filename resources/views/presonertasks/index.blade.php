@@ -6,38 +6,70 @@
                     {{ __("List of Presonar Task ") }} <br> <br>
                 </h3>
             </div>
+            <div class="col-span-6 md:col-span-2 flex items-center mx-auto max-w-max md:w-full">
+                <form method="GET" action="{{ route('assignment.presonertask.index') }}">
+                    <div class="flex items-center space-x-2">
+                        <input type="date" name="date"
+                            class="border border-gray-300 rounded-md px-3 py-2 focus:ring focus:ring-blue-200 focus:outline-none"
+                            value="{{ request('date') }}">
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:ring focus:ring-blue-300">
+                            Search
+                        </button>
+                    </div>
+                </form>
+
+            </div>
         </div>
 
-
-        <!-- <table class="min-w-full border-collapse border border-gray-200">
-            <thead>
+        <div class="card" style="text-align:right;">
+            <a color="indigo" style="margin-top:20px; margin-bottom:10px;"
+                class="inline-flex items-center px-2 py-1 bg-indigo-700 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 transition"
+                href="{{ route('assignment.presonertask.create') }}">
+                Assaign New Task
+            </a>
+        </div>
+        <table class="min-w-full border-collapse border border-gray-200">
+            <thead class="bg-gray-100">
                 <tr>
                     <th class="border border-gray-300 px-4 py-2">Sl</th>
-                    <th class="border border-gray-300 px-4 py-2">Title</th>
-                    <th class="border border-gray-300 px-4 py-2">Status</th>
+                    <th class="border border-gray-300 px-4 py-2">PIN & Prisoner Name</th>
+                    <th class="border border-gray-300 px-4 py-2">Task</th>
+                    <th class="border border-gray-300 px-4 py-2">Date</th>
+                    <th class="border border-gray-300 px-4 py-2">Start at</th>
+                    <th class="border border-gray-300 px-4 py-2">End at</th>
+                    <th class="border border-gray-300 px-4 py-2">Assigned by</th>
                     <th class="border border-gray-300 px-4 py-2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tasks as $item)
-                <tr style="text-align: center;">
-                    <td class="border px-4 py-2">{{ $item->id }}</td>
-                    <td class="border px-4 py-2">{{ $item->title }}</td>
+                @forelse ($tasks as $index => $item)
+                <tr class="hover:bg-gray-50 text-center">
+                    <td class="border px-4 py-2">{{ $index + 1 }}</td>
                     <td class="border px-4 py-2">
-                        <x-badge :color="$item->status === 'Active' ? 'green' : 'red'">
-                            {{ $item->status === 'Active' ? 'Active' : 'Inactive'}}
-                        </x-badge>
+                        {{ $pin_data[$index]->id }} - {{ $pin_data[$index]->first_name }}
+                        {{ $pin_data[$index]->last_name }}
                     </td>
+                    <td class="border px-4 py-2">{{ $task_data[$index]->title }}</td>
+                    <td class="border px-4 py-2">{{ $item->date }}</td>
+                    <td class="border px-4 py-2">{{ $item->start_at }}</td>
+                    <td class="border px-4 py-2">{{ $item->end_at }}</td>
+                    <td class="border px-4 py-2">{{ strtoupper($role_data[$index]->name) }}</td>
                     <td class="border px-4 py-2">
-                        <x-link color="indigo" class="inline-flex"
-                            href="{{ route('task.show', ['id' => $item->id]) }}">
+                        <a href="{{ route('assignment.presonertask.show', ['id' => $item->id]) }}"
+                            class="inline-flex items-center px-2 py-1 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 transition">
                             <x-icons.edit />
-                        </x-link>
+                        </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="8" class="border px-4 py-2 text-center text-gray-500">No data found</td>
+                </tr>
+                @endforelse
             </tbody>
-        </table> -->
+        </table>
+
 
     </div>
 </x-dashboard-layout>

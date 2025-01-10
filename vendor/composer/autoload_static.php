@@ -573,6 +573,7 @@ class ComposerStaticInit7934158da32957747c2be69a29bd8498
         'App\\Http\\Controllers\\Profile\\ProfileAvatarController' => __DIR__ . '/../..' . '/app/Http/Controllers/Profile/ProfileAvatarController.php',
         'App\\Http\\Controllers\\Profile\\ProfileInformationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Profile/ProfileInformationController.php',
         'App\\Http\\Controllers\\Report\\ReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Report/ReportController.php',
+        'App\\Http\\Controllers\\Task\\PresonertaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/Task/PresonertaskController.php',
         'App\\Http\\Controllers\\Task\\TaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/Task/TaskController.php',
         'App\\Http\\Controllers\\User\\DirectorController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/DirectorController.php',
         'App\\Http\\Controllers\\User\\GuardController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/GuardController.php',

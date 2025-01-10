@@ -10,15 +10,7 @@ class Presonertask extends Model
     use HasFactory;
 
     protected $fillable = [
-        'task_id', 
-        'pin_no', 
-        'task_details', 
-        'task_date', 
-        'start_at', 
-        'end_at', 
-        'task_evaluate', 
-        'remarks', 
-        'task_mark', 
-        'status'
+        'task_id', 'pin_no', 'date', 'start_at', 'end_at',
+        'description', 'remarks', 'marks', 'task_status', 'status', 'ass_id',
     ];
 }
