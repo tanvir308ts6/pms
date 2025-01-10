@@ -9,6 +9,8 @@ use App\Models\Presonertask;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 class PresonertaskController extends Controller
@@ -96,11 +98,41 @@ class PresonertaskController extends Controller
     public function show($id)
     {
         $task = Presonertask::findOrFail($id);
-    $tasks = Task::all();
-    $users = User::where('role_id', 4)->select('id', 'first_name', 'last_name')->get();
+        $tasks = Task::all();
+        $users = User::where('role_id', 4)->select('id', 'first_name', 'last_name')->get();
 
-    return view('presonertasks.edit', compact('task', 'tasks', 'users'));
+        return view('presonertasks.edit', compact('task', 'tasks', 'users'));
     }
+
+
+
+    public function evaluation()
+    {
+        $preasonartaskData = 'No task found';
+        return view('presonertasks.evaluate', compact('preasonartaskData'));
+    }
+
+    public function evaluationData(Request $request)
+    {
+        $currentDate = Carbon::now()->toDateString();
+        $preasonartask = Presonertask::where('pin_no', $request->pin_no)
+            ->where('date', $currentDate)
+            ->first();
+        if (!$preasonartask) {
+            $preasonartaskData = 'No task found';
+        }else{
+            $task_data = Task::where('id', $preasonartask->task_id)->get();
+            $prisonar_data = User::where('id', $request->pin_no)->get();
+            $preasonartaskData = [
+                'task_data' => $task_data,
+                'prisonar_data' => $prisonar_data,
+                'prisonar_task' => $preasonartask,
+            ];
+        }
+
+        return view('presonertasks.evaluate', compact('preasonartaskData'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -139,6 +171,26 @@ class PresonertaskController extends Controller
         $task->update($request->all());
 
         return back()->with('status', 'Task modifyed successfully');
+    }
+
+
+    public function updateEval(Request $request, $id)
+    {
+        $request->validate([
+            'marks' => 'required',
+            'task_status' => 'required',
+        ]);
+
+        $task = Presonertask::findOrFail($id);
+        $task->update($request->all());
+
+        return back()->with('status', 'Task evaluation Submited successfully');
+    }
+
+
+
+    public function report(){
+        return view('presonertasks.report');
     }
 
     /**

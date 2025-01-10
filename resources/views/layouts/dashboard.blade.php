@@ -11,7 +11,7 @@
                         bg-white overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
 
                 <!--User role-->
-                <a href="{{ route('dashboard') }}"
+                <a href="{{ route('dashboard') }}" style="text-decoration:none;"
                     class="flex items-center justify-center h-auto space-x-2 mx-5 border-b-2 flex-wrap">
                     <x-icons.shield class="w-8 max-h-full h-14 text-gray-500" />
                     <span class="text-gray-800 text-2xl font-bold uppercase tracking-wide text-center">
@@ -149,7 +149,7 @@
                             <span>{{__("Visitors")}}</span>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown.simple.link :href="url('/visitor-list')">
+                            <x-dropdown.simple.link :href="url('/visitor-list')" style="text-decoration:none;">
                                 {{ __('Visitors List') }}
                             </x-dropdown.simple.link>
                         </x-slot>
@@ -199,15 +199,11 @@
                         </x-slot>
                         <x-slot name="content">
                             @if(Auth::user()?->role?->id == 3)
-                            <x-dropdown.simple.link :href="url('/assignment/presoner-task-list')">
-                                {{ __('Day wise') }}
-                            </x-dropdown.simple.link>
-
-                            <x-dropdown.simple.link :href="url('/create-task')">
+                            <x-dropdown.simple.link :href="url('/assignment/presoner-task-evaluation')" style="text-decoration:none;">
                                 {{ __('Evaluate') }}
                             </x-dropdown.simple.link>
                             @endif
-                            <x-dropdown.simple.link :href="url('/create-task')">
+                            <x-dropdown.simple.link :href="url('/task-report')" style="text-decoration:none;">
                                 {{ __('Task Report') }}
                             </x-dropdown.simple.link>
 
